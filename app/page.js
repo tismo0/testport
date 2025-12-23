@@ -458,22 +458,36 @@ export default function Home() {
 }
 
 // ============================================================================
-// SCROLL TO TOP BUTTON
+// SCROLL TO TOP BUTTON WITH PROGRESS RING
 // ============================================================================
 function ScrollToTop() {
   const [visible, setVisible] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const toggleVisibility = () => {
-      setVisible(window.scrollY > 400);
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
+      setProgress(scrollPercent);
+      setVisible(scrollTop > 400);
     };
-    window.addEventListener('scroll', toggleVisibility);
-    return () => window.removeEventListener('scroll', toggleVisibility);
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  // SVG circle properties
+  const size = 52;
+  const strokeWidth = 3;
+  const radius = (size - strokeWidth) / 2;
+  const circumference = 2 * Math.PI * radius;
+  const strokeDashoffset = circumference - (progress / 100) * circumference;
 
   return (
     <AnimatePresence>
@@ -483,12 +497,48 @@ function ScrollToTop() {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}
           onClick={scrollToTop}
-          className="fixed bottom-6 right-6 z-50 w-12 h-12 bg-zinc-800 border border-zinc-700 rounded-full flex items-center justify-center text-zinc-300 hover:bg-zinc-700 hover:text-white shadow-lg transition-colors cursor-pointer"
+          className="fixed bottom-6 right-6 z-50 w-14 h-14 flex items-center justify-center cursor-pointer group"
           aria-label="Scroll to top"
         >
-          <ChevronUp size={24} />
+          {/* Progress Ring */}
+          <svg className="absolute inset-0 w-full h-full -rotate-90" viewBox={`0 0 ${size} ${size}`}>
+            {/* Background circle */}
+            <circle
+              cx={size / 2}
+              cy={size / 2}
+              r={radius}
+              fill="none"
+              stroke="rgba(63, 63, 70, 0.5)"
+              strokeWidth={strokeWidth}
+            />
+            {/* Progress circle */}
+            <circle
+              cx={size / 2}
+              cy={size / 2}
+              r={radius}
+              fill="none"
+              stroke="url(#progressGradient)"
+              strokeWidth={strokeWidth}
+              strokeLinecap="round"
+              strokeDasharray={circumference}
+              strokeDashoffset={strokeDashoffset}
+              className="transition-all duration-150 ease-out"
+            />
+            <defs>
+              <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#8b5cf6" />
+                <stop offset="100%" stopColor="#ec4899" />
+              </linearGradient>
+            </defs>
+          </svg>
+
+          {/* Inner button */}
+          <div className="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center text-zinc-400 group-hover:text-white group-hover:bg-zinc-800 transition-all shadow-lg">
+            <ChevronUp size={20} />
+          </div>
         </motion.button>
       )}
     </AnimatePresence>
   );
 }
+
