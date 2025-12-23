@@ -1,14 +1,19 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import {
   Menu, X, Send, ChevronLeft, ChevronRight, ExternalLink, Github,
   MessageSquare, Palette, Code2, Rocket, CheckCircle2, Loader2,
-  Clock, Zap, Shield, ChevronUp, Globe, ChevronDown
+  Clock, Zap, Shield, ChevronUp, Globe, ChevronDown, Search
 } from 'lucide-react';
 import { languages, translations, detectLanguage } from './i18n';
+import {
+  SiReact, SiNextdotjs, SiTailwindcss, SiSupabase, SiGit, SiGithub,
+  SiHtml5, SiCss3, SiJavascript, SiVite, SiTypescript, SiNodedotjs,
+  SiVercel, SiPostgresql
+} from 'react-icons/si';
 
 // ============================================================================
 // LANGUAGE HOOK
@@ -210,6 +215,58 @@ const workflow = [
   { icon: Rocket, title: 'Launch', desc: 'Deploy and optimize for performance' }
 ];
 
+// Tech Stack Data
+const techStack = [
+  { icon: SiReact, name: 'React', color: '#61DAFB' },
+  { icon: SiNextdotjs, name: 'Next.js', color: '#ffffff' },
+  { icon: SiTypescript, name: 'TypeScript', color: '#3178C6' },
+  { icon: SiJavascript, name: 'JavaScript', color: '#F7DF1E' },
+  { icon: SiTailwindcss, name: 'Tailwind', color: '#06B6D4' },
+  { icon: SiVite, name: 'Vite', color: '#646CFF' },
+  { icon: SiHtml5, name: 'HTML5', color: '#E34F26' },
+  { icon: SiCss3, name: 'CSS3', color: '#1572B6' },
+  { icon: SiNodedotjs, name: 'Node.js', color: '#339933' },
+  { icon: SiSupabase, name: 'Supabase', color: '#3FCF8E' },
+  { icon: SiPostgresql, name: 'PostgreSQL', color: '#4169E1' },
+  { icon: SiGit, name: 'Git', color: '#F05032' },
+  { icon: SiGithub, name: 'GitHub', color: '#ffffff' },
+  { icon: SiVercel, name: 'Vercel', color: '#ffffff' },
+];
+
+// ============================================================================
+// LOGO LOOP COMPONENT (Infinite Scroll)
+// ============================================================================
+function LogoLoop({ items, speed = 30 }) {
+  return (
+    <div className="relative overflow-hidden py-8">
+      {/* Fade edges */}
+      <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-zinc-950 to-transparent z-10 pointer-events-none" />
+      <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-zinc-950 to-transparent z-10 pointer-events-none" />
+
+      <motion.div
+        className="flex gap-12 items-center"
+        animate={{ x: ['0%', '-50%'] }}
+        transition={{ duration: speed, repeat: Infinity, ease: 'linear' }}
+      >
+        {/* Double the items for seamless loop */}
+        {[...items, ...items].map((item, i) => (
+          <div
+            key={i}
+            className="flex flex-col items-center gap-2 group cursor-pointer"
+            title={item.name}
+          >
+            <div className="w-14 h-14 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center transition-all duration-300 group-hover:border-zinc-600 group-hover:scale-110 group-hover:shadow-lg"
+              style={{ '--hover-color': item.color }}>
+              <item.icon size={28} className="text-zinc-400 transition-colors duration-300 group-hover:text-[var(--hover-color)]" />
+            </div>
+            <span className="text-xs text-zinc-500 group-hover:text-zinc-300 transition-colors whitespace-nowrap">{item.name}</span>
+          </div>
+        ))}
+      </motion.div>
+    </div>
+  );
+}
+
 // ============================================================================
 // MAIN PAGE COMPONENT
 // ============================================================================
@@ -229,6 +286,7 @@ export default function Home() {
   };
 
   const navItems = [
+    { key: 'skills', label: t.nav.skills || 'Skills' },
     { key: 'projects', label: t.nav.projects },
     { key: 'workflow', label: t.nav.workflow },
     { key: 'contact', label: t.nav.contact }
@@ -384,6 +442,45 @@ export default function Home() {
                 <p className="text-sm text-zinc-500">{step.desc}</p>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============ SKILLS & TOOLS ============ */}
+      <section id="skills" className="py-24 sm:py-32 border-t border-zinc-800/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <span className="text-xs font-medium uppercase tracking-widest text-zinc-500">{t.nav.skills || 'Skills'}</span>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mt-4 text-white">{t.skills?.title || 'Tech Stack & Tools'}</h2>
+            <p className="text-zinc-400 mt-4 max-w-xl mx-auto">{t.skills?.desc || 'Technologies I use to bring your projects to life.'}</p>
+          </div>
+
+          {/* Logo Loop */}
+          <LogoLoop items={techStack} speed={35} />
+
+          {/* Skills Categories */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
+            <div className="p-6 bg-zinc-900/50 border border-zinc-800 rounded-2xl">
+              <div className="w-12 h-12 mb-4 rounded-xl bg-violet-500/10 flex items-center justify-center text-violet-400">
+                <Code2 size={24} />
+              </div>
+              <h3 className="font-semibold text-white mb-2">{t.skills?.frontend || 'Frontend Development'}</h3>
+              <p className="text-sm text-zinc-500">{t.skills?.frontendDesc || 'React, Next.js, TypeScript, Tailwind CSS, Vite, responsive design.'}</p>
+            </div>
+            <div className="p-6 bg-zinc-900/50 border border-zinc-800 rounded-2xl">
+              <div className="w-12 h-12 mb-4 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+                <Zap size={24} />
+              </div>
+              <h3 className="font-semibold text-white mb-2">{t.skills?.backend || 'Backend & Database'}</h3>
+              <p className="text-sm text-zinc-500">{t.skills?.backendDesc || 'Node.js, Supabase, PostgreSQL, REST APIs, serverless functions.'}</p>
+            </div>
+            <div className="p-6 bg-zinc-900/50 border border-zinc-800 rounded-2xl">
+              <div className="w-12 h-12 mb-4 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-400">
+                <Search size={24} />
+              </div>
+              <h3 className="font-semibold text-white mb-2">{t.skills?.seo || 'SEO & Optimization'}</h3>
+              <p className="text-sm text-zinc-500">{t.skills?.seoDesc || 'Technical SEO, Core Web Vitals, performance optimization, accessibility.'}</p>
+            </div>
           </div>
         </div>
       </section>

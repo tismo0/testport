@@ -17,7 +17,7 @@ export const languages = [
 
 export const translations = {
     en: {
-        nav: { projects: 'Projects', workflow: 'Workflow', contact: 'Contact', cta: 'Get Started' },
+        nav: { projects: 'Projects', workflow: 'Workflow', contact: 'Contact', cta: 'Get Started', skills: 'Skills' },
         hero: {
             badge: 'Available for Projects',
             title1: 'Building Digital',
@@ -42,6 +42,16 @@ export const translations = {
             desc: 'A selection of my recent work in web development and Discord automation.',
             visit: 'Visit',
             code: 'Code'
+        },
+        skills: {
+            title: 'Tech Stack & Tools',
+            desc: 'Technologies I use to bring your projects to life.',
+            frontend: 'Frontend Development',
+            frontendDesc: 'React, Next.js, TypeScript, Tailwind CSS, Vite, responsive design.',
+            backend: 'Backend & Database',
+            backendDesc: 'Node.js, Supabase, PostgreSQL, REST APIs, serverless functions.',
+            seo: 'SEO & Optimization',
+            seoDesc: 'Technical SEO, Core Web Vitals, performance optimization, accessibility.'
         },
         contact: {
             label: 'Contact',
@@ -71,7 +81,7 @@ export const translations = {
         footer: '© 2024 Tismodev. All rights reserved.'
     },
     fr: {
-        nav: { projects: 'Projets', workflow: 'Processus', contact: 'Contact', cta: 'Commencer' },
+        nav: { projects: 'Projets', workflow: 'Processus', contact: 'Contact', cta: 'Commencer', skills: 'Compétences' },
         hero: {
             badge: 'Disponible pour vos projets',
             title1: 'Créateur d\'expériences',
@@ -96,6 +106,16 @@ export const translations = {
             desc: 'Une sélection de mes travaux récents en développement web et automatisation Discord.',
             visit: 'Visiter',
             code: 'Code'
+        },
+        skills: {
+            title: 'Stack Technique & Outils',
+            desc: 'Les technologies que j\'utilise pour réaliser vos projets.',
+            frontend: 'Développement Frontend',
+            frontendDesc: 'React, Next.js, TypeScript, Tailwind CSS, Vite, design responsive.',
+            backend: 'Backend & Base de données',
+            backendDesc: 'Node.js, Supabase, PostgreSQL, APIs REST, fonctions serverless.',
+            seo: 'SEO & Optimisation',
+            seoDesc: 'SEO technique, Core Web Vitals, optimisation performance, accessibilité.'
         },
         contact: {
             label: 'Contact',
