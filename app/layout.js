@@ -82,7 +82,7 @@ export const metadata = {
     description: "Je crée des sites vitrines pour restaurants, salons de coiffure, portfolios et commerces locaux. Apps React/Next.js avec APIs, bases de données Supabase, et bots Discord pour le support et automatisations.",
     images: [
       {
-        url: "/assets/logo.webp",
+        url: "/favicon.png",
         width: 512,
         height: 512,
         alt: "Logo Tismodev - Développeur web freelance",
@@ -97,17 +97,18 @@ export const metadata = {
     creator: "@tismo_tech",
     title: "Tismodev | Développeur full stack freelance web & Discord",
     description: "Sites vitrines modernes pour restaurants, salons, portfolios. Bots Discord sur mesure. Support 72h.",
-    images: ["/assets/logo.webp"],
+    images: ["/favicon.png"],
   },
 
 
   icons: {
     icon: [
-      { url: "/favicon.ico" },
-      { url: "/assets/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.png", sizes: "any" },
+      { url: "/favicon.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon.png", sizes: "32x32", type: "image/png" },
     ],
-    apple: "/assets/logo.webp",
-    shortcut: "/assets/favicon.svg",
+    apple: "/favicon.png",
+    shortcut: "/favicon.png",
   },
 
 

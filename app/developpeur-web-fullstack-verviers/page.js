@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
     MapPin, Phone, Code2, Rocket, CheckCircle2,
     ArrowRight, Globe, Server, Palette, Zap, Menu, X, ChevronDown
@@ -111,9 +112,9 @@ export default function VerviersCityPage() {
                         <Link href="/" className="flex items-center gap-3 group z-10">
                             <motion.div
                                 whileHover={{ scale: 1.1, rotate: 5 }}
-                                className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 via-fuchsia-500 to-pink-500 flex items-center justify-center text-white font-bold shadow-lg shadow-violet-500/30"
+                                className="w-10 h-10 rounded-xl overflow-hidden shadow-lg shadow-violet-500/30"
                             >
-                                T
+                                <Image src="/favicon.png" alt="Tismodev Logo" width={40} height={40} className="w-full h-full object-cover" priority />
                             </motion.div>
                             <span className="font-semibold text-lg text-zinc-100 group-hover:text-white transition-colors hidden sm:block">Tismodev</span>
                         </Link>
@@ -177,7 +178,9 @@ export default function VerviersCityPage() {
                         <div className="flex flex-col h-full p-6">
                             <div className="flex justify-between items-center">
                                 <div className="flex items-center gap-3">
-                                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 via-fuchsia-500 to-pink-500 flex items-center justify-center text-white font-bold">T</div>
+                                    <div className="w-10 h-10 rounded-xl overflow-hidden">
+                                        <Image src="/favicon.png" alt="Tismodev Logo" width={40} height={40} className="w-full h-full object-cover" />
+                                    </div>
                                     <span className="font-semibold text-lg text-zinc-100">Tismodev</span>
                                 </div>
                                 <button onClick={() => setMobileMenuOpen(false)} className="p-2.5 text-zinc-400 hover:text-white bg-zinc-800/50 rounded-xl">
