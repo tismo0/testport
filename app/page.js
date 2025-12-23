@@ -542,57 +542,129 @@ export default function Home() {
   return (
     <div className={`min-h-screen bg-zinc-950 text-zinc-100 font-sans antialiased ${isRTL ? 'rtl' : ''}`} dir={isRTL ? 'rtl' : 'ltr'}>
 
-      {/* ============ HEADER ============ */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-zinc-950/80 backdrop-blur-xl border-b border-zinc-800/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <a href="#" className="flex items-center gap-3 group">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center text-white font-bold text-sm">T</div>
-              <span className="font-semibold tracking-tight text-zinc-100 group-hover:text-white transition-colors">Tismodev</span>
+      {/* ============ HEADER - Pill Navigation ============ */}
+      <motion.header
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-5xl"
+      >
+        <div className="relative bg-zinc-900/70 backdrop-blur-2xl border border-zinc-800/80 rounded-2xl shadow-2xl shadow-black/20">
+          {/* Gradient glow effect */}
+          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-violet-500/5 via-transparent to-fuchsia-500/5 pointer-events-none" />
+
+          <div className="relative flex items-center justify-between h-14 px-4 sm:px-6">
+            {/* Logo */}
+            <a href="#" className="flex items-center gap-3 group z-10">
+              <motion.div
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                className="w-9 h-9 rounded-xl bg-gradient-to-br from-violet-500 via-fuchsia-500 to-pink-500 flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-violet-500/25"
+              >
+                T
+              </motion.div>
+              <span className="font-semibold tracking-tight text-zinc-100 group-hover:text-white transition-colors hidden sm:block">Tismodev</span>
             </a>
 
-            <nav className="hidden md:flex items-center gap-6">
-              {navItems.map((item) => (
-                <a key={item.key} href={`#${item.key}`} className="text-sm text-zinc-400 hover:text-white transition-colors">{item.label}</a>
-              ))}
-              <LanguageSwitcher lang={lang} setLang={setLang} />
-              <a href="#contact" className="px-4 py-2 bg-white text-zinc-900 text-sm font-medium rounded-lg hover:bg-zinc-200 transition-colors">
+            {/* Desktop Navigation - Pill Style */}
+            <nav className="hidden md:flex items-center">
+              <div className="relative flex items-center bg-zinc-800/50 rounded-xl p-1">
+                {navItems.map((item, index) => (
+                  <a
+                    key={item.key}
+                    href={`#${item.key}`}
+                    className="relative z-10 px-4 py-2 text-sm font-medium text-zinc-400 hover:text-white transition-colors rounded-lg group"
+                  >
+                    <span className="relative z-10">{item.label}</span>
+                    {/* Individual pill hover effect */}
+                    <motion.div
+                      className="absolute inset-0 bg-zinc-700/50 rounded-lg opacity-0 group-hover:opacity-100"
+                      layoutId="navPillHover"
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
+                    />
+                  </a>
+                ))}
+              </div>
+
+              {/* Language Switcher */}
+              <div className="ml-3">
+                <LanguageSwitcher lang={lang} setLang={setLang} />
+              </div>
+
+              {/* CTA Button */}
+              <motion.a
+                href="#contact"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="ml-3 px-5 py-2.5 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white text-sm font-semibold rounded-xl shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 transition-shadow"
+              >
                 {t.nav.cta}
-              </a>
+              </motion.a>
             </nav>
 
-            <button onClick={() => setMobileMenuOpen(true)} className="md:hidden p-2 text-zinc-400 hover:text-white">
-              <Menu size={24} />
-            </button>
+            {/* Mobile Menu Button */}
+            <motion.button
+              whileTap={{ scale: 0.9 }}
+              onClick={() => setMobileMenuOpen(true)}
+              className="md:hidden p-2.5 text-zinc-400 hover:text-white bg-zinc-800/50 rounded-xl border border-zinc-700/50"
+            >
+              <Menu size={20} />
+            </motion.button>
           </div>
         </div>
+      </motion.header>
 
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {mobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50 bg-zinc-950/95 backdrop-blur-xl md:hidden"
-            >
-              <div className="flex flex-col h-full p-6">
-                <div className="flex justify-end">
-                  <button onClick={() => setMobileMenuOpen(false)} className="p-2 text-zinc-400 hover:text-white">
-                    <X size={24} />
-                  </button>
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-zinc-950/98 backdrop-blur-xl md:hidden"
+          >
+            <div className="flex flex-col h-full p-6">
+              <div className="flex justify-between items-center">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-violet-500 via-fuchsia-500 to-pink-500 flex items-center justify-center text-white font-bold text-sm">T</div>
+                  <span className="font-semibold text-zinc-100">Tismodev</span>
                 </div>
-                <nav className="flex flex-col items-center justify-center flex-1 gap-8">
-                  {navItems.map((item) => (
-                    <a key={item.key} href={`#${item.key}`} onClick={() => setMobileMenuOpen(false)} className="text-2xl font-medium text-zinc-300 hover:text-white transition-colors">{item.label}</a>
-                  ))}
-                  <LanguageSwitcher lang={lang} setLang={setLang} />
-                </nav>
+                <button onClick={() => setMobileMenuOpen(false)} className="p-2.5 text-zinc-400 hover:text-white bg-zinc-800/50 rounded-xl">
+                  <X size={20} />
+                </button>
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </header>
+
+              <nav className="flex flex-col items-center justify-center flex-1 gap-6">
+                {navItems.map((item, i) => (
+                  <motion.a
+                    key={item.key}
+                    href={`#${item.key}`}
+                    onClick={() => setMobileMenuOpen(false)}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                    className="text-2xl font-medium text-zinc-300 hover:text-white transition-colors"
+                  >
+                    {item.label}
+                  </motion.a>
+                ))}
+                <div className="mt-4">
+                  <LanguageSwitcher lang={lang} setLang={setLang} />
+                </div>
+                <motion.a
+                  href="#contact"
+                  onClick={() => setMobileMenuOpen(false)}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  className="mt-4 px-8 py-4 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white text-lg font-semibold rounded-xl shadow-lg"
+                >
+                  {t.nav.cta}
+                </motion.a>
+              </nav>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* ============ HERO ============ */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
