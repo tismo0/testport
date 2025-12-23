@@ -271,7 +271,7 @@ const techStack = [
 ];
 
 
-function LogoLoop({ items, speed = 30 }) {
+function LogoLoop({ items, speed = 15 }) {
   return (
     <div className="relative overflow-hidden py-8">
 
@@ -930,7 +930,7 @@ export default function Home() {
                     <span className="relative z-10 font-medium group-hover:text-white transition-colors">Discord</span>
                   </a>
                   <a
-                    href="https://wa.me/32489427017"
+                    href="https://wa.me/32489949784"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group relative inline-flex items-center gap-2.5 px-5 py-3 bg-gradient-to-br from-zinc-800/80 to-zinc-900/80 backdrop-blur-sm border border-zinc-700/50 rounded-2xl text-zinc-300 overflow-hidden transition-all duration-300 hover:border-[#25D366]/50 hover:shadow-lg hover:shadow-[#25D366]/20 hover:scale-[1.02]"
@@ -1004,7 +1004,7 @@ export default function Home() {
               <a href="https://discord.gg/7vVVqdkVWg" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-xl bg-zinc-800/50 text-zinc-500 hover:bg-[#5865F2] hover:text-white transition-all duration-300 hover:scale-110">
                 <DiscordIcon size={18} />
               </a>
-              <a href="https://wa.me/32489427017" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-xl bg-zinc-800/50 text-zinc-500 hover:bg-[#25D366] hover:text-white transition-all duration-300 hover:scale-110">
+              <a href="https://wa.me/32489949784" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-xl bg-zinc-800/50 text-zinc-500 hover:bg-[#25D366] hover:text-white transition-all duration-300 hover:scale-110">
                 <WhatsAppIcon size={18} />
               </a>
               <a href="https://instagram.com/ayoubsyfd" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-xl bg-zinc-800/50 text-zinc-500 hover:bg-gradient-to-r hover:from-[#833AB4] hover:via-[#E4405F] hover:to-[#FCAF45] hover:text-white transition-all duration-300 hover:scale-110">
