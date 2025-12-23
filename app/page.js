@@ -516,10 +516,33 @@ export default function Home() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setFormState('loading');
-    await new Promise(r => setTimeout(r, 1500));
-    console.log('Form:', form);
-    setFormState('success');
-    setTimeout(() => { setFormState('idle'); setForm({ name: '', email: '', project: '', message: '' }); }, 3000);
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/9614c88d9c38e36384389a0dc6810357', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          project: form.project,
+          message: form.message,
+          _subject: `Nouveau message de ${form.name} - ${form.project}`,
+        })
+      });
+
+      if (response.ok) {
+        setFormState('success');
+        setTimeout(() => { setFormState('idle'); setForm({ name: '', email: '', project: '', message: '' }); }, 3000);
+      } else {
+        setFormState('idle');
+      }
+    } catch (error) {
+      console.error('Form error:', error);
+      setFormState('idle');
+    }
   };
 
   const navItems = [
