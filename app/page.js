@@ -216,7 +216,7 @@ const projects = [
     title: 'Non-Profit Website',
     desc: 'Complete website for a peace association with donations, newsletter, and event management.',
     tech: ['HTML', 'CSS', 'JavaScript', 'Vercel'],
-    link: 'https://amisdelapaixverviers.vercel.app/'
+    link: 'https://ccbl.vercel.app/'
   },
   {
     id: 'translate',
@@ -232,8 +232,8 @@ const projects = [
     title: 'ZetaCVC Discord Bot',
     desc: 'Enterprise Discord bot with ticket system, role management, and moderation tools.',
     tech: ['Discord.js', 'Node.js', 'Scheduler', 'CSS'],
-    link: 'https://discord.gg/7vVVqdkVWg',
-    github: 'https://github.com/tismo-dev'
+    link: 'https://discord.com/users/792811364908924969',
+    github: 'https://github.com/tismo0'
   },
   {
     id: 'salon',
@@ -241,7 +241,7 @@ const projects = [
     title: 'Salon Booking',
     desc: 'Elegant booking platform with appointment scheduling and responsive mobile design.',
     tech: ['Next.js', 'React', 'CSS', 'Vercel'],
-    link: 'https://coiffeur-beb.vercel.app/'
+    link: 'https://barberb.vercel.app'
   }
 ];
 
@@ -942,7 +942,7 @@ export default function Home() {
                 <p className="text-sm text-zinc-500">{t.contact.direct}</p>
                 <div className="flex flex-wrap gap-3">
                   <a
-                    href="https://discord.gg/7vVVqdkVWg"
+                    href="https://discord.com/users/792811364908924969"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group relative inline-flex items-center gap-2.5 px-5 py-3 bg-gradient-to-br from-zinc-800/80 to-zinc-900/80 backdrop-blur-sm border border-zinc-700/50 rounded-2xl text-zinc-300 overflow-hidden transition-all duration-300 hover:border-[#5865F2]/50 hover:shadow-lg hover:shadow-[#5865F2]/20 hover:scale-[1.02]"
@@ -1017,13 +1017,12 @@ export default function Home() {
       {/* ============ FOOTER ============ */}
       <footer className="py-8 border-t border-zinc-800/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="text-sm text-zinc-500">{t.footer}</div>
+          <div className="flex flex-col items-center gap-4">
             <div className="flex items-center gap-3">
-              <a href="https://github.com/tismo-dev" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-xl bg-zinc-800/50 text-zinc-500 hover:bg-zinc-800 hover:text-white transition-all duration-300 hover:scale-110">
+              <a href="https://github.com/tismo0" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-xl bg-zinc-800/50 text-zinc-500 hover:bg-zinc-800 hover:text-white transition-all duration-300 hover:scale-110">
                 <Github size={18} />
               </a>
-              <a href="https://discord.gg/7vVVqdkVWg" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-xl bg-zinc-800/50 text-zinc-500 hover:bg-[#5865F2] hover:text-white transition-all duration-300 hover:scale-110">
+              <a href="https://discord.com/users/792811364908924969" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-xl bg-zinc-800/50 text-zinc-500 hover:bg-[#5865F2] hover:text-white transition-all duration-300 hover:scale-110">
                 <DiscordIcon size={18} />
               </a>
               <a href="https://wa.me/32489949784" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-xl bg-zinc-800/50 text-zinc-500 hover:bg-[#25D366] hover:text-white transition-all duration-300 hover:scale-110">
@@ -1033,6 +1032,7 @@ export default function Home() {
                 <InstagramIcon size={18} />
               </a>
             </div>
+            <div className="text-sm text-zinc-500">{t.footer}</div>
           </div>
         </div>
       </footer>

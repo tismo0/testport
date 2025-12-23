@@ -138,9 +138,9 @@ const jsonLd = {
       "url": "https://tismodev.com/",
       "logo": "https://tismodev.com/assets/logo.webp",
       "sameAs": [
-        "https://discord.gg/7vVVqdkVWg",
+        "https://discord.com/users/792811364908924969",
         "https://instagram.com/ayoubsyfd",
-        "https://github.com/tismo-dev"
+        "https://github.com/tismo0"
       ],
       "contactPoint": {
         "@type": "ContactPoint",

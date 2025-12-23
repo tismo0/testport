@@ -134,9 +134,9 @@ export const jsonLdLocalBusiness = {
         }
     ],
     "sameAs": [
-        "https://discord.gg/7vVVqdkVWg",
+        "https://discord.com/users/792811364908924969",
         "https://instagram.com/ayoubsyfd",
-        "https://github.com/tismo-dev",
+        "https://github.com/tismo0",
         "https://wa.me/32489949784"
     ],
     "hasOfferCatalog": {

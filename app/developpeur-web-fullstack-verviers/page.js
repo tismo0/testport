@@ -1,40 +1,224 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import {
-    MapPin, Phone, Mail, Code2, Rocket, CheckCircle2,
-    ArrowRight, Globe, Server, Palette, Zap
+    MapPin, Phone, Code2, Rocket, CheckCircle2,
+    ArrowRight, Globe, Server, Palette, Zap, Menu, X, ChevronDown
 } from 'lucide-react';
 import { SiReact, SiNextdotjs, SiNodedotjs, SiTailwindcss, SiSupabase } from 'react-icons/si';
+import { languages, translations, detectLanguage } from '../i18n';
 
-// ============================================================================
-// CITY PAGE - Développeur Web Fullstack Verviers
-// ============================================================================
-export default function VerviersCityPage() {
+function useLanguage() {
+    const [lang, setLangState] = useState('en');
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+        setLangState(detectLanguage());
+    }, []);
+
+    const setLang = (code) => {
+        setLangState(code);
+        localStorage.setItem('lang', code);
+    };
+
+    const t = translations[lang] || translations.en;
+    const isRTL = languages.find(l => l.code === lang)?.rtl || false;
+
+    return { lang, setLang, t, isRTL, mounted };
+}
+
+function LanguageSwitcher({ lang, setLang }) {
+    const [open, setOpen] = useState(false);
+    const current = languages.find(l => l.code === lang) || languages[0];
+
     return (
-        <div className="min-h-screen bg-zinc-950 text-zinc-100 font-sans antialiased">
-            {/* Header simple */}
-            <header className="fixed top-0 left-0 right-0 z-50 bg-zinc-950/90 backdrop-blur-xl border-b border-zinc-800/50">
-                <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-                    <Link href="/" className="flex items-center gap-3 group">
-                        <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center text-white font-bold text-sm">T</div>
-                        <span className="font-semibold text-zinc-100">Tismodev</span>
-                    </Link>
-                    <div className="flex items-center gap-4">
-                        <a href="tel:+32489949784" className="hidden sm:flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors">
-                            <Phone size={16} />
-                            <span>+32 489 94 97 84</span>
-                        </a>
-                        <a href="#contact" className="px-4 py-2 bg-violet-600 hover:bg-violet-500 text-white text-sm font-medium rounded-lg transition-colors">
-                            Devis gratuit
-                        </a>
+        <div className="relative">
+            <button
+                onClick={() => setOpen(!open)}
+                className="flex items-center gap-2 px-3 py-1.5 text-sm text-zinc-400 hover:text-white bg-zinc-900/50 border border-zinc-800 rounded-lg transition-colors cursor-pointer"
+            >
+                <Globe size={16} />
+                <span>{current.flag}</span>
+                <ChevronDown size={14} className={`transition-transform ${open ? 'rotate-180' : ''}`} />
+            </button>
+
+            <AnimatePresence>
+                {open && (
+                    <>
+                        <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
+                        <motion.div
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -10 }}
+                            className="absolute right-0 top-full mt-2 z-50 w-48 py-2 bg-zinc-900 border border-zinc-800 rounded-xl shadow-xl max-h-80 overflow-y-auto"
+                        >
+                            {languages.map((l) => (
+                                <button
+                                    key={l.code}
+                                    onClick={() => { setLang(l.code); setOpen(false); }}
+                                    className={`w-full flex items-center gap-3 px-4 py-2.5 text-sm transition-colors cursor-pointer ${lang === l.code ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:bg-zinc-800/50 hover:text-white'
+                                        }`}
+                                >
+                                    <span className="text-lg">{l.flag}</span>
+                                    <span>{l.name}</span>
+                                </button>
+                            ))}
+                        </motion.div>
+                    </>
+                )}
+            </AnimatePresence>
+        </div>
+    );
+}
+
+export default function VerviersCityPage() {
+    const { lang, setLang, t, isRTL } = useLanguage();
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+    const navItems = [
+        { key: 'skills', label: t.nav?.skills || 'Compétences', href: '/#skills' },
+        { key: 'projects', label: t.nav?.projects || 'Projets', href: '/#projects' },
+        { key: 'workflow', label: t.nav?.workflow || 'Processus', href: '/#workflow' },
+        { key: 'contact', label: t.nav?.contact || 'Contact', href: '/#contact' }
+    ];
+
+    return (
+        <div className={`min-h-screen bg-zinc-950 text-zinc-100 font-sans antialiased ${isRTL ? 'rtl' : ''}`} dir={isRTL ? 'rtl' : 'ltr'}>
+
+            <svg className="hidden">
+                <defs>
+                    <filter id="goo">
+                        <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur" />
+                        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10" result="goo" />
+                        <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+                    </filter>
+                </defs>
+            </svg>
+
+            <motion.header
+                initial={{ y: -100, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-5xl"
+            >
+                <div className="relative bg-zinc-900/80 backdrop-blur-2xl border border-zinc-800/80 rounded-2xl shadow-2xl shadow-black/30">
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-violet-500/10 via-transparent to-fuchsia-500/10 pointer-events-none" />
+
+                    <div className="relative flex items-center justify-between h-14 px-4 sm:px-6">
+                        <Link href="/" className="flex items-center gap-3 group z-10">
+                            <motion.div
+                                whileHover={{ scale: 1.1, rotate: 5 }}
+                                className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 via-fuchsia-500 to-pink-500 flex items-center justify-center text-white font-bold shadow-lg shadow-violet-500/30"
+                            >
+                                T
+                            </motion.div>
+                            <span className="font-semibold text-lg text-zinc-100 group-hover:text-white transition-colors hidden sm:block">Tismodev</span>
+                        </Link>
+
+                        <nav className="hidden md:flex items-center" style={{ filter: 'url(#goo)' }}>
+                            <div className="flex items-center gap-1 bg-zinc-800/60 rounded-xl p-1.5">
+                                {navItems.map((item, i) => (
+                                    <motion.a
+                                        key={item.key}
+                                        href={item.href}
+                                        className="relative group px-4 py-2 rounded-lg text-sm font-medium text-zinc-400 hover:text-white transition-colors"
+                                        whileHover={{ scale: 1.05 }}
+                                        whileTap={{ scale: 0.95 }}
+                                    >
+                                        <motion.div
+                                            className="absolute inset-0 bg-violet-600 rounded-lg opacity-0 group-hover:opacity-100 -z-10"
+                                            layoutId="gooeyBg"
+                                            transition={{ type: "spring", bounce: 0.25, duration: 0.5 }}
+                                        />
+                                        <span className="relative z-10">{item.label}</span>
+                                    </motion.a>
+                                ))}
+                            </div>
+
+                            <div className="ml-4">
+                                <LanguageSwitcher lang={lang} setLang={setLang} />
+                            </div>
+
+                            <motion.a
+                                href="/#contact"
+                                whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(139, 92, 246, 0.5)' }}
+                                whileTap={{ scale: 0.95 }}
+                                className="ml-3 px-5 py-2.5 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white text-sm font-semibold rounded-xl shadow-lg shadow-violet-500/25 transition-all"
+                            >
+                                {t.nav?.cta || 'Commencer'}
+                            </motion.a>
+                        </nav>
+
+                        <div className="flex items-center gap-3 md:hidden">
+                            <LanguageSwitcher lang={lang} setLang={setLang} />
+                            <motion.button
+                                whileTap={{ scale: 0.9 }}
+                                onClick={() => setMobileMenuOpen(true)}
+                                className="p-2.5 text-zinc-400 hover:text-white bg-zinc-800/50 rounded-xl border border-zinc-700/50"
+                            >
+                                <Menu size={20} />
+                            </motion.button>
+                        </div>
                     </div>
                 </div>
-            </header>
+            </motion.header>
+
+            <AnimatePresence>
+                {mobileMenuOpen && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-50 bg-zinc-950/98 backdrop-blur-xl md:hidden"
+                    >
+                        <div className="flex flex-col h-full p-6">
+                            <div className="flex justify-between items-center">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 via-fuchsia-500 to-pink-500 flex items-center justify-center text-white font-bold">T</div>
+                                    <span className="font-semibold text-lg text-zinc-100">Tismodev</span>
+                                </div>
+                                <button onClick={() => setMobileMenuOpen(false)} className="p-2.5 text-zinc-400 hover:text-white bg-zinc-800/50 rounded-xl">
+                                    <X size={20} />
+                                </button>
+                            </div>
+
+                            <nav className="flex flex-col items-center justify-center flex-1 gap-6">
+                                {navItems.map((item, i) => (
+                                    <motion.a
+                                        key={item.key}
+                                        href={item.href}
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: i * 0.1 }}
+                                        className="text-2xl font-medium text-zinc-300 hover:text-white transition-colors"
+                                    >
+                                        {item.label}
+                                    </motion.a>
+                                ))}
+                                <div className="mt-4">
+                                    <LanguageSwitcher lang={lang} setLang={setLang} />
+                                </div>
+                                <motion.a
+                                    href="/#contact"
+                                    onClick={() => setMobileMenuOpen(false)}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.4 }}
+                                    className="mt-4 px-8 py-4 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white text-lg font-semibold rounded-xl shadow-lg"
+                                >
+                                    {t.nav?.cta || 'Commencer'}
+                                </motion.a>
+                            </nav>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
 
             <main className="pt-20">
-                {/* Hero Section */}
                 <section className="py-20 sm:py-28 relative overflow-hidden">
                     <div className="absolute inset-0 overflow-hidden">
                         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-gradient-to-b from-violet-500/15 via-fuchsia-500/10 to-transparent rounded-full blur-3xl" />
@@ -58,7 +242,7 @@ export default function VerviersCityPage() {
                         </p>
 
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                            <a href="#contact" className="w-full sm:w-auto px-8 py-3.5 bg-white text-zinc-900 font-semibold rounded-xl hover:bg-zinc-200 transition-all shadow-lg flex items-center justify-center gap-2">
+                            <a href="/#contact" className="w-full sm:w-auto px-8 py-3.5 bg-white text-zinc-900 font-semibold rounded-xl hover:bg-zinc-200 transition-all shadow-lg flex items-center justify-center gap-2">
                                 Demander un devis gratuit
                                 <ArrowRight size={18} />
                             </a>
@@ -70,7 +254,6 @@ export default function VerviersCityPage() {
                     </div>
                 </section>
 
-                {/* Intro SEO - Paragraphe d'ancrage local */}
                 <section className="py-16 border-t border-zinc-800/50">
                     <div className="max-w-4xl mx-auto px-4">
                         <motion.div
@@ -102,7 +285,6 @@ export default function VerviersCityPage() {
                     </div>
                 </section>
 
-                {/* Services Grid */}
                 <section className="py-16 bg-zinc-900/30">
                     <div className="max-w-6xl mx-auto px-4">
                         <div className="text-center mb-12">
@@ -166,7 +348,6 @@ export default function VerviersCityPage() {
                     </div>
                 </section>
 
-                {/* Technologies */}
                 <section className="py-16 border-t border-zinc-800/50">
                     <div className="max-w-4xl mx-auto px-4">
                         <h2 className="text-2xl sm:text-3xl font-bold text-white text-center mb-8">
@@ -194,7 +375,6 @@ export default function VerviersCityPage() {
                     </div>
                 </section>
 
-                {/* Pourquoi Verviers */}
                 <section className="py-16 bg-zinc-900/30">
                     <div className="max-w-4xl mx-auto px-4">
                         <motion.div
@@ -223,7 +403,6 @@ export default function VerviersCityPage() {
                     </div>
                 </section>
 
-                {/* Zone de couverture */}
                 <section className="py-16 border-t border-zinc-800/50">
                     <div className="max-w-4xl mx-auto px-4 text-center">
                         <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6">
@@ -243,7 +422,6 @@ export default function VerviersCityPage() {
                     </div>
                 </section>
 
-                {/* CTA Final */}
                 <section id="contact" className="py-20 bg-gradient-to-b from-zinc-900/50 to-zinc-950">
                     <div className="max-w-3xl mx-auto px-4 text-center">
                         <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
@@ -258,9 +436,8 @@ export default function VerviersCityPage() {
                                 <Phone size={20} />
                                 +32 489 94 97 84
                             </a>
-                            <a href="mailto:contact@tismodev.com" className="w-full sm:w-auto px-8 py-4 bg-zinc-800 hover:bg-zinc-700 text-white font-semibold rounded-xl border border-zinc-700 transition-all flex items-center justify-center gap-2">
-                                <Mail size={20} />
-                                contact@tismodev.com
+                            <a href="/#contact" className="w-full sm:w-auto px-8 py-4 bg-zinc-800 hover:bg-zinc-700 text-white font-semibold rounded-xl border border-zinc-700 transition-all flex items-center justify-center gap-2">
+                                Formulaire de contact
                             </a>
                         </div>
 
@@ -272,7 +449,6 @@ export default function VerviersCityPage() {
                 </section>
             </main>
 
-            {/* Footer simple */}
             <footer className="py-8 border-t border-zinc-800/50">
                 <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
                     <p className="text-sm text-zinc-500">© 2024 Tismodev • Développeur Web Fullstack à Verviers</p>
