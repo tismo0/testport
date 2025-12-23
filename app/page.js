@@ -6,8 +6,79 @@ import Image from 'next/image';
 import {
   Menu, X, Send, ChevronLeft, ChevronRight, ExternalLink, Github,
   MessageSquare, Palette, Code2, Rocket, CheckCircle2, Loader2,
-  Clock, Zap, Shield, ChevronUp
+  Clock, Zap, Shield, ChevronUp, Globe, ChevronDown
 } from 'lucide-react';
+import { languages, translations, detectLanguage } from './i18n';
+
+// ============================================================================
+// LANGUAGE HOOK
+// ============================================================================
+function useLanguage() {
+  const [lang, setLangState] = useState('en');
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    setLangState(detectLanguage());
+  }, []);
+
+  const setLang = (code) => {
+    setLangState(code);
+    localStorage.setItem('lang', code);
+  };
+
+  const t = translations[lang] || translations.en;
+  const isRTL = languages.find(l => l.code === lang)?.rtl || false;
+
+  return { lang, setLang, t, isRTL, mounted };
+}
+
+// ============================================================================
+// LANGUAGE SWITCHER COMPONENT
+// ============================================================================
+function LanguageSwitcher({ lang, setLang }) {
+  const [open, setOpen] = useState(false);
+  const current = languages.find(l => l.code === lang) || languages[0];
+
+  return (
+    <div className="relative">
+      <button
+        onClick={() => setOpen(!open)}
+        className="flex items-center gap-2 px-3 py-1.5 text-sm text-zinc-400 hover:text-white bg-zinc-900/50 border border-zinc-800 rounded-lg transition-colors cursor-pointer"
+      >
+        <Globe size={16} />
+        <span>{current.flag}</span>
+        <ChevronDown size={14} className={`transition-transform ${open ? 'rotate-180' : ''}`} />
+      </button>
+
+      <AnimatePresence>
+        {open && (
+          <>
+            <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="absolute right-0 top-full mt-2 z-50 w-48 py-2 bg-zinc-900 border border-zinc-800 rounded-xl shadow-xl max-h-80 overflow-y-auto"
+            >
+              {languages.map((l) => (
+                <button
+                  key={l.code}
+                  onClick={() => { setLang(l.code); setOpen(false); }}
+                  className={`w-full flex items-center gap-3 px-4 py-2.5 text-sm transition-colors cursor-pointer ${lang === l.code ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:bg-zinc-800/50 hover:text-white'
+                    }`}
+                >
+                  <span className="text-lg">{l.flag}</span>
+                  <span>{l.name}</span>
+                </button>
+              ))}
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
 
 // ============================================================================
 // ICONS (Discord & WhatsApp)
@@ -143,6 +214,7 @@ const workflow = [
 // MAIN PAGE COMPONENT
 // ============================================================================
 export default function Home() {
+  const { lang, setLang, t, isRTL } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [formState, setFormState] = useState('idle');
   const [form, setForm] = useState({ name: '', email: '', project: '', message: '' });
@@ -156,8 +228,14 @@ export default function Home() {
     setTimeout(() => { setFormState('idle'); setForm({ name: '', email: '', project: '', message: '' }); }, 3000);
   };
 
+  const navItems = [
+    { key: 'projects', label: t.nav.projects },
+    { key: 'workflow', label: t.nav.workflow },
+    { key: 'contact', label: t.nav.contact }
+  ];
+
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 font-sans antialiased">
+    <div className={`min-h-screen bg-zinc-950 text-zinc-100 font-sans antialiased ${isRTL ? 'rtl' : ''}`} dir={isRTL ? 'rtl' : 'ltr'}>
 
       {/* ============ HEADER ============ */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-zinc-950/80 backdrop-blur-xl border-b border-zinc-800/50">
@@ -168,12 +246,13 @@ export default function Home() {
               <span className="font-semibold tracking-tight text-zinc-100 group-hover:text-white transition-colors">Tismodev</span>
             </a>
 
-            <nav className="hidden md:flex items-center gap-8">
-              {['Projects', 'Workflow', 'Contact'].map((item) => (
-                <a key={item} href={`#${item.toLowerCase()}`} className="text-sm text-zinc-400 hover:text-white transition-colors">{item}</a>
+            <nav className="hidden md:flex items-center gap-6">
+              {navItems.map((item) => (
+                <a key={item.key} href={`#${item.key}`} className="text-sm text-zinc-400 hover:text-white transition-colors">{item.label}</a>
               ))}
+              <LanguageSwitcher lang={lang} setLang={setLang} />
               <a href="#contact" className="px-4 py-2 bg-white text-zinc-900 text-sm font-medium rounded-lg hover:bg-zinc-200 transition-colors">
-                Get Started
+                {t.nav.cta}
               </a>
             </nav>
 
@@ -199,9 +278,10 @@ export default function Home() {
                   </button>
                 </div>
                 <nav className="flex flex-col items-center justify-center flex-1 gap-8">
-                  {['Projects', 'Workflow', 'Contact'].map((item) => (
-                    <a key={item} href={`#${item.toLowerCase()}`} onClick={() => setMobileMenuOpen(false)} className="text-2xl font-medium text-zinc-300 hover:text-white transition-colors">{item}</a>
+                  {navItems.map((item) => (
+                    <a key={item.key} href={`#${item.key}`} onClick={() => setMobileMenuOpen(false)} className="text-2xl font-medium text-zinc-300 hover:text-white transition-colors">{item.label}</a>
                   ))}
+                  <LanguageSwitcher lang={lang} setLang={setLang} />
                 </nav>
               </div>
             </motion.div>
@@ -225,29 +305,29 @@ export default function Home() {
           >
             <span className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 text-xs font-medium uppercase tracking-widest text-zinc-400 border border-zinc-800 rounded-full">
               <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-              Available for Projects
+              {t.hero.badge}
             </span>
 
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight mb-6">
               <span className="bg-gradient-to-r from-white via-zinc-300 to-zinc-500 bg-clip-text text-transparent">
-                Building Digital
+                {t.hero.title1}
               </span>
               <br />
               <span className="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-pink-400 bg-clip-text text-transparent">
-                Experiences
+                {t.hero.title2}
               </span>
             </h1>
 
             <p className="text-lg sm:text-xl text-zinc-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-              Full-stack developer specializing in modern web applications, Discord bots, and creative digital solutions.
+              {t.hero.desc}
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a href="#projects" className="w-full sm:w-auto px-8 py-3.5 bg-white text-zinc-900 font-semibold rounded-xl hover:bg-zinc-200 transition-all shadow-lg shadow-white/10">
-                View Projects
+                {t.hero.cta1}
               </a>
               <a href="#contact" className="w-full sm:w-auto px-8 py-3.5 bg-zinc-900 text-zinc-100 font-semibold rounded-xl border border-zinc-800 hover:bg-zinc-800 hover:border-zinc-700 transition-all">
-                Get in Touch
+                {t.hero.cta2}
               </a>
             </div>
           </motion.div>
@@ -260,9 +340,9 @@ export default function Home() {
             className="grid grid-cols-3 gap-8 mt-20 max-w-md mx-auto"
           >
             {[
-              { num: '10+', label: 'Projects' },
-              { num: '3+', label: 'Discord Bots' },
-              { num: '72h', label: 'Express Delivery' }
+              { num: '10+', label: t.hero.stats.projects },
+              { num: '3+', label: t.hero.stats.bots },
+              { num: '72h', label: t.hero.stats.delivery }
             ].map((stat, i) => (
               <div key={i} className="text-center">
                 <div className="text-2xl sm:text-3xl font-bold text-white">{stat.num}</div>
@@ -277,12 +357,12 @@ export default function Home() {
       <section id="workflow" className="py-24 sm:py-32 border-t border-zinc-800/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <span className="text-xs font-medium uppercase tracking-widest text-zinc-500">Process</span>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mt-4 text-white">How I Work</h2>
+            <span className="text-xs font-medium uppercase tracking-widest text-zinc-500">{t.nav.workflow}</span>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mt-4 text-white">{t.workflow.title}</h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {workflow.map((step, i) => (
+            {t.workflow.steps.map((step, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
@@ -295,7 +375,10 @@ export default function Home() {
                   {i + 1}
                 </div>
                 <div className="w-12 h-12 mb-4 rounded-xl bg-zinc-800 flex items-center justify-center text-zinc-400 group-hover:text-violet-400 group-hover:bg-violet-500/10 transition-all">
-                  <step.icon size={24} />
+                  {i === 0 && <MessageSquare size={24} />}
+                  {i === 1 && <Palette size={24} />}
+                  {i === 2 && <Code2 size={24} />}
+                  {i === 3 && <Rocket size={24} />}
                 </div>
                 <h3 className="font-semibold text-white mb-2">{step.title}</h3>
                 <p className="text-sm text-zinc-500">{step.desc}</p>
@@ -309,9 +392,9 @@ export default function Home() {
       <section id="projects" className="py-24 sm:py-32 border-t border-zinc-800/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-16">
-            <span className="text-xs font-medium uppercase tracking-widest text-zinc-500">Portfolio</span>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mt-4 text-white">Featured Projects</h2>
-            <p className="text-zinc-400 mt-4 max-w-xl">A selection of my recent work in web development and Discord automation.</p>
+            <span className="text-xs font-medium uppercase tracking-widest text-zinc-500">{t.projects.label}</span>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mt-4 text-white">{t.projects.title}</h2>
+            <p className="text-zinc-400 mt-4 max-w-xl">{t.projects.desc}</p>
           </div>
 
           {/* Bento Grid */}
@@ -338,11 +421,11 @@ export default function Home() {
                   </div>
                   <div className="flex gap-2 pt-3 border-t border-zinc-800">
                     <a href={project.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-zinc-300 bg-zinc-800/60 rounded-lg hover:bg-zinc-700 hover:text-white transition-all">
-                      <ExternalLink size={14} /> Visit
+                      <ExternalLink size={14} /> {t.projects.visit}
                     </a>
                     {project.github && (
                       <a href={project.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-zinc-300 bg-zinc-800/60 rounded-lg hover:bg-zinc-700 hover:text-white transition-all">
-                        <Github size={14} /> Code
+                        <Github size={14} /> {t.projects.code}
                       </a>
                     )}
                   </div>
@@ -360,19 +443,17 @@ export default function Home() {
 
             {/* Left: Info */}
             <div>
-              <span className="text-xs font-medium uppercase tracking-widest text-zinc-500">Contact</span>
-              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mt-4 text-white">Let's Work Together</h2>
-              <p className="text-zinc-400 mt-4 mb-8">Have a project in mind? I'd love to hear about it.</p>
+              <span className="text-xs font-medium uppercase tracking-widest text-zinc-500">{t.contact.label}</span>
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mt-4 text-white">{t.contact.title}</h2>
+              <p className="text-zinc-400 mt-4 mb-8">{t.contact.desc}</p>
 
               <div className="space-y-4 mb-10">
-                {[
-                  { icon: Clock, title: 'Fast Turnaround', desc: '72h express delivery available' },
-                  { icon: Zap, title: 'Modern Stack', desc: 'Next.js, React, Tailwind, Node.js' },
-                  { icon: Shield, title: 'Quality First', desc: 'Clean code, SEO optimized, accessible' }
-                ].map((item, i) => (
+                {t.contact.benefits.map((item, i) => (
                   <div key={i} className="flex gap-4 p-4 bg-zinc-900/50 border border-zinc-800 rounded-xl">
                     <div className="w-10 h-10 rounded-lg bg-zinc-800 flex items-center justify-center text-zinc-400">
-                      <item.icon size={18} />
+                      {i === 0 && <Clock size={18} />}
+                      {i === 1 && <Zap size={18} />}
+                      {i === 2 && <Shield size={18} />}
                     </div>
                     <div>
                       <div className="font-medium text-white">{item.title}</div>
@@ -383,7 +464,7 @@ export default function Home() {
               </div>
 
               <div className="space-y-3">
-                <p className="text-sm text-zinc-500 mb-2">Or reach me directly:</p>
+                <p className="text-sm text-zinc-500 mb-2">{t.contact.direct}</p>
                 <div className="flex flex-wrap gap-3">
                   <a href="https://discord.gg/7vVVqdkVWg" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2.5 bg-zinc-900 border border-zinc-800 rounded-xl text-zinc-300 hover:bg-[#5865F2] hover:border-[#5865F2] hover:text-white transition-all">
                     <DiscordIcon size={18} /> Discord
@@ -397,36 +478,36 @@ export default function Home() {
 
             {/* Right: Form */}
             <div className="p-6 sm:p-8 bg-zinc-900/50 border border-zinc-800 rounded-2xl">
-              <h3 className="text-xl font-semibold text-white mb-6">Send a Message</h3>
+              <h3 className="text-xl font-semibold text-white mb-6">{t.contact.form.title}</h3>
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-sm font-medium text-zinc-400 mb-2">Name *</label>
-                    <input type="text" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required className="w-full px-4 py-3 bg-zinc-900 border border-zinc-800 rounded-xl text-white placeholder-zinc-600 focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-transparent transition-all" placeholder="John Doe" />
+                    <label className="block text-sm font-medium text-zinc-400 mb-2">{t.contact.form.name} *</label>
+                    <input type="text" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required className="w-full px-4 py-3 bg-zinc-900 border border-zinc-800 rounded-xl text-white placeholder-zinc-600 focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-transparent transition-all" />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-zinc-400 mb-2">Email *</label>
-                    <input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required className="w-full px-4 py-3 bg-zinc-900 border border-zinc-800 rounded-xl text-white placeholder-zinc-600 focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-transparent transition-all" placeholder="john@example.com" />
+                    <label className="block text-sm font-medium text-zinc-400 mb-2">{t.contact.form.email} *</label>
+                    <input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required className="w-full px-4 py-3 bg-zinc-900 border border-zinc-800 rounded-xl text-white placeholder-zinc-600 focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-transparent transition-all" />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-zinc-400 mb-2">Project Type *</label>
+                  <label className="block text-sm font-medium text-zinc-400 mb-2">{t.contact.form.project} *</label>
                   <select value={form.project} onChange={(e) => setForm({ ...form, project: e.target.value })} required className="w-full px-4 py-3 bg-zinc-900 border border-zinc-800 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-transparent transition-all cursor-pointer">
-                    <option value="">Select an option...</option>
-                    <option value="website">Website</option>
-                    <option value="bot">Discord Bot</option>
-                    <option value="other">Other</option>
+                    <option value="">{t.contact.form.select}</option>
+                    <option value="website">{t.contact.form.website}</option>
+                    <option value="bot">{t.contact.form.bot}</option>
+                    <option value="other">{t.contact.form.other}</option>
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-zinc-400 mb-2">Message *</label>
-                  <textarea value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} required rows={4} className="w-full px-4 py-3 bg-zinc-900 border border-zinc-800 rounded-xl text-white placeholder-zinc-600 focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-transparent resize-none transition-all" placeholder="Tell me about your project..." />
+                  <label className="block text-sm font-medium text-zinc-400 mb-2">{t.contact.form.message} *</label>
+                  <textarea value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} required rows={4} className="w-full px-4 py-3 bg-zinc-900 border border-zinc-800 rounded-xl text-white placeholder-zinc-600 focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-transparent resize-none transition-all" />
                 </div>
                 <button type="submit" disabled={formState !== 'idle'} className={`w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold transition-all cursor-pointer ${formState === 'success' ? 'bg-green-600 text-white' : formState === 'loading' ? 'bg-zinc-700 text-zinc-400' : 'bg-white text-zinc-900 hover:bg-zinc-200 shadow-lg shadow-white/10'}`}>
                   {formState === 'loading' && <Loader2 size={18} className="animate-spin" />}
                   {formState === 'success' && <CheckCircle2 size={18} />}
                   {formState === 'idle' && <Send size={18} />}
-                  {formState === 'loading' ? 'Sending...' : formState === 'success' ? 'Sent!' : 'Send Message'}
+                  {formState === 'loading' ? t.contact.form.sending : formState === 'success' ? t.contact.form.sent : t.contact.form.send}
                 </button>
               </form>
             </div>
@@ -438,7 +519,7 @@ export default function Home() {
       <footer className="py-8 border-t border-zinc-800/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="text-sm text-zinc-500">© 2024 Tismodev. All rights reserved.</div>
+            <div className="text-sm text-zinc-500">{t.footer}</div>
             <div className="flex items-center gap-4">
               <a href="https://github.com/tismo-dev" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-white transition-colors">
                 <Github size={20} />
