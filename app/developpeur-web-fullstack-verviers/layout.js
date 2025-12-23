@@ -1,8 +1,4 @@
-// ============================================================================
-// CITY PAGE METADATA - Développeur Web Fullstack Verviers
-// Optimized for: "Développeur web Verviers", "Développeur Fullstack Verviers",
-//                "Web designer Verviers", "Dev Verviers"
-// ============================================================================
+
 
 export const viewport = {
     themeColor: '#09090b',
@@ -13,10 +9,10 @@ export const viewport = {
 export const metadata = {
     metadataBase: new URL('https://tismodev.com'),
 
-    // Title tag optimisé (60 caractères max)
+
     title: "Développeur Web Fullstack Verviers | Tismodev",
 
-    // Meta description optimisée (155 caractères max)
+
     description: "Développeur web freelance à Verviers. Création de sites internet, applications React/Next.js et SEO pour PME et indépendants. Devis gratuit sous 24h.",
 
     keywords: [
@@ -76,9 +72,7 @@ export const metadata = {
     },
 };
 
-// ============================================================================
-// JSON-LD LocalBusiness Schema - Pour Google Local SEO
-// ============================================================================
+
 export const jsonLdLocalBusiness = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",

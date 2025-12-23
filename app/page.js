@@ -15,9 +15,7 @@ import {
   SiVercel, SiPostgresql
 } from 'react-icons/si';
 
-// ============================================================================
-// LANGUAGE HOOK
-// ============================================================================
+
 function useLanguage() {
   const [lang, setLangState] = useState('en');
   const [mounted, setMounted] = useState(false);
@@ -38,9 +36,7 @@ function useLanguage() {
   return { lang, setLang, t, isRTL, mounted };
 }
 
-// ============================================================================
-// LANGUAGE SWITCHER COMPONENT
-// ============================================================================
+
 function LanguageSwitcher({ lang, setLang }) {
   const [open, setOpen] = useState(false);
   const current = languages.find(l => l.code === lang) || languages[0];
@@ -85,9 +81,7 @@ function LanguageSwitcher({ lang, setLang }) {
   );
 }
 
-// ============================================================================
-// ICONS (Discord & WhatsApp)
-// ============================================================================
+
 function DiscordIcon({ size = 20 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -104,9 +98,7 @@ function WhatsAppIcon({ size = 20 }) {
   );
 }
 
-// ============================================================================
-// IMAGE CAROUSEL COMPONENT - Browser Mockup Style
-// ============================================================================
+
 function ImageCarousel({ images, title }) {
   const [idx, setIdx] = useState(0);
   const [dir, setDir] = useState(0);
@@ -129,9 +121,9 @@ function ImageCarousel({ images, title }) {
 
   return (
     <div className="relative">
-      {/* Browser Mockup Frame */}
+
       <div className="rounded-xl overflow-hidden border border-zinc-700/50 bg-zinc-800 shadow-2xl">
-        {/* Browser Top Bar */}
+
         <div className="flex items-center gap-2 px-3 py-2 bg-zinc-800 border-b border-zinc-700/50">
           <div className="flex gap-1.5">
             <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
@@ -145,7 +137,7 @@ function ImageCarousel({ images, title }) {
           </div>
         </div>
 
-        {/* Image Container */}
+
         <div className="relative aspect-[16/10] bg-gradient-to-br from-zinc-900 via-zinc-900 to-zinc-800 overflow-hidden">
           <AnimatePresence initial={false} custom={dir} mode="wait">
             <motion.div
@@ -172,7 +164,7 @@ function ImageCarousel({ images, title }) {
             </motion.div>
           </AnimatePresence>
 
-          {/* Navigation Arrows */}
+
           {images.length > 1 && (
             <>
               <button
@@ -191,7 +183,7 @@ function ImageCarousel({ images, title }) {
           )}
         </div>
 
-        {/* Dots Navigation */}
+
         {images.length > 1 && (
           <div className="flex justify-center gap-1.5 py-2 bg-zinc-800">
             {images.map((_, i) => (
@@ -208,9 +200,7 @@ function ImageCarousel({ images, title }) {
   );
 }
 
-// ============================================================================
-// DATA
-// ============================================================================
+
 const projects = [
   {
     id: 'asbl',
@@ -254,7 +244,7 @@ const workflow = [
   { icon: Rocket, title: 'Launch', desc: 'Deploy and optimize for performance' }
 ];
 
-// Tech Stack Data
+
 const techStack = [
   { icon: SiReact, name: 'React', color: '#61DAFB' },
   { icon: SiNextdotjs, name: 'Next.js', color: '#ffffff' },
@@ -272,13 +262,11 @@ const techStack = [
   { icon: SiVercel, name: 'Vercel', color: '#ffffff' },
 ];
 
-// ============================================================================
-// LOGO LOOP COMPONENT (Infinite Scroll)
-// ============================================================================
+
 function LogoLoop({ items, speed = 30 }) {
   return (
     <div className="relative overflow-hidden py-8">
-      {/* Fade edges */}
+
       <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-zinc-950 to-transparent z-10 pointer-events-none" />
       <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-zinc-950 to-transparent z-10 pointer-events-none" />
 
@@ -287,7 +275,7 @@ function LogoLoop({ items, speed = 30 }) {
         animate={{ x: ['0%', '-50%'] }}
         transition={{ duration: speed, repeat: Infinity, ease: 'linear' }}
       >
-        {/* Double the items for seamless loop */}
+
         {[...items, ...items].map((item, i) => (
           <div
             key={i}
@@ -306,9 +294,7 @@ function LogoLoop({ items, speed = 30 }) {
   );
 }
 
-// ============================================================================
-// FLOATING LINES BACKGROUND COMPONENT
-// ============================================================================
+
 function FloatingLines() {
   const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
 
@@ -377,7 +363,7 @@ function FloatingLines() {
         ))}
       </svg>
 
-      {/* Floating particles */}
+
       <div className="absolute inset-0">
         {Array.from({ length: 20 }, (_, i) => (
           <motion.div
@@ -405,9 +391,7 @@ function FloatingLines() {
   );
 }
 
-// ============================================================================
-// MAGIC CARD COMPONENT - Spotlight, Tilt, Glow, Stars
-// ============================================================================
+
 function MagicCard({ children, className = '' }) {
   const cardRef = useRef(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -415,7 +399,7 @@ function MagicCard({ children, className = '' }) {
   const [stars, setStars] = useState([]);
 
   useEffect(() => {
-    // Generate random stars on mount
+
     setStars(Array.from({ length: 8 }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
@@ -440,7 +424,7 @@ function MagicCard({ children, className = '' }) {
     setMousePos({ x: 0, y: 0 });
   };
 
-  // Calculate tilt based on mouse position
+
   const tiltX = isHovered ? ((mousePos.y / (cardRef.current?.offsetHeight || 1)) - 0.5) * -10 : 0;
   const tiltY = isHovered ? ((mousePos.x / (cardRef.current?.offsetWidth || 1)) - 0.5) * 10 : 0;
 
@@ -458,7 +442,7 @@ function MagicCard({ children, className = '' }) {
       whileHover={{ scale: 1.02 }}
       transition={{ duration: 0.3, ease: 'easeOut' }}
     >
-      {/* Spotlight effect */}
+
       <div
         className="pointer-events-none absolute inset-0 z-10 transition-opacity duration-300"
         style={{
@@ -467,7 +451,7 @@ function MagicCard({ children, className = '' }) {
         }}
       />
 
-      {/* Border glow effect */}
+
       <div
         className="pointer-events-none absolute inset-0 z-20 rounded-2xl transition-opacity duration-300"
         style={{
@@ -476,7 +460,7 @@ function MagicCard({ children, className = '' }) {
         }}
       />
 
-      {/* Floating stars */}
+
       {isHovered && stars.map((star) => (
         <motion.div
           key={star.id}
@@ -506,7 +490,7 @@ function MagicCard({ children, className = '' }) {
         </motion.div>
       ))}
 
-      {/* Card content */}
+
       <div className="relative z-0">
         {children}
       </div>
@@ -514,9 +498,7 @@ function MagicCard({ children, className = '' }) {
   );
 }
 
-// ============================================================================
-// MAIN PAGE COMPONENT
-// ============================================================================
+
 export default function Home() {
   const { lang, setLang, t, isRTL } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -536,7 +518,8 @@ export default function Home() {
     { key: 'skills', label: t.nav.skills || 'Skills' },
     { key: 'projects', label: t.nav.projects },
     { key: 'workflow', label: t.nav.workflow },
-    { key: 'contact', label: t.nav.contact }
+    { key: 'contact', label: t.nav.contact },
+    { key: 'locality', label: t.nav.locality || 'Localité', href: '/developpeur-web-fullstack-verviers' }
   ];
 
   return (
@@ -583,7 +566,7 @@ export default function Home() {
                 {navItems.map((item, i) => (
                   <motion.a
                     key={item.key}
-                    href={`#${item.key}`}
+                    href={item.href || `#${item.key}`}
                     className="relative group px-4 py-2 rounded-lg text-sm font-medium text-zinc-400 hover:text-white transition-colors"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
@@ -675,7 +658,7 @@ export default function Home() {
                 {navItems.map((item, i) => (
                   <motion.a
                     key={item.key}
-                    href={`#${item.key}`}
+                    href={item.href || `#${item.key}`}
                     onClick={() => setMobileMenuOpen(false)}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -1000,9 +983,7 @@ export default function Home() {
   );
 }
 
-// ============================================================================
-// SCROLL TO TOP BUTTON WITH PROGRESS RING
-// ============================================================================
+
 function ScrollToTop() {
   const [visible, setVisible] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -1025,7 +1006,7 @@ function ScrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // SVG circle properties
+
   const size = 52;
   const strokeWidth = 3;
   const radius = (size - strokeWidth) / 2;
@@ -1043,9 +1024,9 @@ function ScrollToTop() {
           className="fixed bottom-6 right-6 z-50 w-14 h-14 flex items-center justify-center cursor-pointer group"
           aria-label="Scroll to top"
         >
-          {/* Progress Ring */}
+
           <svg className="absolute inset-0 w-full h-full -rotate-90" viewBox={`0 0 ${size} ${size}`}>
-            {/* Background circle */}
+
             <circle
               cx={size / 2}
               cy={size / 2}
@@ -1054,7 +1035,7 @@ function ScrollToTop() {
               stroke="rgba(63, 63, 70, 0.5)"
               strokeWidth={strokeWidth}
             />
-            {/* Progress circle */}
+
             <circle
               cx={size / 2}
               cy={size / 2}
@@ -1075,7 +1056,7 @@ function ScrollToTop() {
             </defs>
           </svg>
 
-          {/* Inner button */}
+
           <div className="w-10 h-10 bg-zinc-900 border border-zinc-800 rounded-full flex items-center justify-center text-zinc-400 group-hover:text-white group-hover:bg-zinc-800 transition-all shadow-lg">
             <ChevronUp size={20} />
           </div>

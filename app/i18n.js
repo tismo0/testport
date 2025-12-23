@@ -1,6 +1,3 @@
-// ============================================================================
-// TRANSLATIONS - 10 Most Spoken Languages
-// ============================================================================
 
 export const languages = [
     { code: 'en', name: 'English', flag: '🇬🇧' },
@@ -17,7 +14,7 @@ export const languages = [
 
 export const translations = {
     en: {
-        nav: { projects: 'Projects', workflow: 'Workflow', contact: 'Contact', cta: 'Get Started', skills: 'Skills' },
+        nav: { projects: 'Projects', workflow: 'Workflow', contact: 'Contact', cta: 'Get Started', skills: 'Skills', locality: 'Location' },
         hero: {
             badge: 'Freelance Developer',
             title1: 'Modern Websites',
@@ -81,7 +78,7 @@ export const translations = {
         footer: '© 2024 Tismodev. All rights reserved.'
     },
     fr: {
-        nav: { projects: 'Projets', workflow: 'Processus', contact: 'Contact', cta: 'Commencer', skills: 'Compétences' },
+        nav: { projects: 'Projets', workflow: 'Processus', contact: 'Contact', cta: 'Commencer', skills: 'Compétences', locality: 'Localité' },
         hero: {
             badge: 'Développeur Freelance',
             title1: 'Sites Modernes',
@@ -145,7 +142,7 @@ export const translations = {
         footer: '© 2024 Tismodev. Tous droits réservés.'
     },
     es: {
-        nav: { projects: 'Proyectos', workflow: 'Proceso', contact: 'Contacto', cta: 'Empezar' },
+        nav: { projects: 'Proyectos', workflow: 'Proceso', contact: 'Contacto', cta: 'Empezar', skills: 'Habilidades', locality: 'Ubicación' },
         hero: {
             badge: 'Disponible para proyectos',
             title1: 'Creando experiencias',
@@ -161,7 +158,7 @@ export const translations = {
         footer: '© 2024 Tismodev. Todos los derechos reservados.'
     },
     ar: {
-        nav: { projects: 'المشاريع', workflow: 'العملية', contact: 'اتصل', cta: 'ابدأ' },
+        nav: { projects: 'المشاريع', workflow: 'العملية', contact: 'اتصل', cta: 'ابدأ', skills: 'المهارات', locality: 'الموقع' },
         hero: { badge: 'متاح للمشاريع', title1: 'بناء تجارب', title2: 'رقمية', desc: 'مطور متكامل متخصص في تطبيقات الويب الحديثة', cta1: 'عرض المشاريع', cta2: 'تواصل معي', stats: { projects: 'مشاريع', bots: 'بوتات', delivery: 'توصيل سريع' } },
         workflow: { title: 'طريقة العمل', steps: [{ title: 'اكتشاف', desc: 'نناقش رؤيتك' }, { title: 'تصميم', desc: 'أنشئ النماذج' }, { title: 'تطوير', desc: 'البناء بالتقنيات الحديثة' }, { title: 'إطلاق', desc: 'النشر والتحسين' }] },
         projects: { label: 'أعمالي', title: 'مشاريع مميزة', desc: 'مجموعة من أعمالي الأخيرة', visit: 'زيارة', code: 'الكود' },
@@ -169,7 +166,7 @@ export const translations = {
         footer: '© 2024 Tismodev. جميع الحقوق محفوظة.'
     },
     zh: {
-        nav: { projects: '项目', workflow: '流程', contact: '联系', cta: '开始' },
+        nav: { projects: '项目', workflow: '流程', contact: '联系', cta: '开始', skills: '技能', locality: '位置' },
         hero: { badge: '可接项目', title1: '创造数字', title2: '体验', desc: '专注于现代网络应用、Discord机器人和创意数字解决方案的全栈开发者', cta1: '查看项目', cta2: '联系我', stats: { projects: '项目', bots: '机器人', delivery: '快速交付' } },
         workflow: { title: '工作方式', steps: [{ title: '发现', desc: '讨论您的愿景' }, { title: '设计', desc: '创建原型' }, { title: '开发', desc: '使用现代技术构建' }, { title: '发布', desc: '部署和优化' }] },
         projects: { label: '作品集', title: '精选项目', desc: '我最近的作品选集', visit: '访问', code: '代码' },
@@ -177,7 +174,7 @@ export const translations = {
         footer: '© 2024 Tismodev. 版权所有.'
     },
     hi: {
-        nav: { projects: 'परियोजनाएं', workflow: 'प्रक्रिया', contact: 'संपर्क', cta: 'शुरू करें' },
+        nav: { projects: 'परियोजनाएं', workflow: 'प्रक्रिया', contact: 'संपर्क', cta: 'शुरू करें', skills: 'कौशल', locality: 'स्थान' },
         hero: { badge: 'प्रोजेक्ट के लिए उपलब्ध', title1: 'डिजिटल अनुभव', title2: 'बनाना', desc: 'आधुनिक वेब एप्लिकेशन और Discord बॉट में विशेषज्ञ फुल-स्टैक डेवलपर', cta1: 'प्रोजेक्ट देखें', cta2: 'संपर्क करें', stats: { projects: 'प्रोजेक्ट', bots: 'बॉट्स', delivery: 'त्वरित डिलीवरी' } },
         workflow: { title: 'मेरी विधि', steps: [{ title: 'खोज', desc: 'आपकी दृष्टि पर चर्चा' }, { title: 'डिज़ाइन', desc: 'प्रोटोटाइप बनाना' }, { title: 'विकास', desc: 'आधुनिक तकनीक से निर्माण' }, { title: 'लॉन्च', desc: 'डिप्लॉय और ऑप्टिमाइज़' }] },
         projects: { label: 'पोर्टफोलियो', title: 'चुनिंदा परियोजनाएं', desc: 'मेरे हाल के कार्यों का चयन', visit: 'देखें', code: 'कोड' },
@@ -185,7 +182,7 @@ export const translations = {
         footer: '© 2024 Tismodev. सर्वाधिकार सुरक्षित.'
     },
     pt: {
-        nav: { projects: 'Projetos', workflow: 'Processo', contact: 'Contato', cta: 'Começar' },
+        nav: { projects: 'Projetos', workflow: 'Processo', contact: 'Contato', cta: 'Começar', skills: 'Habilidades', locality: 'Localização' },
         hero: { badge: 'Disponível para projetos', title1: 'Criando experiências', title2: 'Digitais', desc: 'Desenvolvedor full-stack especializado em aplicações web modernas e bots Discord.', cta1: 'Ver projetos', cta2: 'Contato', stats: { projects: 'Projetos', bots: 'Bots Discord', delivery: 'Entrega Expressa' } },
         workflow: { title: 'Meu método', steps: [{ title: 'Descoberta', desc: 'Discutimos sua visão' }, { title: 'Design', desc: 'Crio protótipos' }, { title: 'Desenvolvimento', desc: 'Construção com tecnologia moderna' }, { title: 'Lançamento', desc: 'Deploy e otimização' }] },
         projects: { label: 'Portfólio', title: 'Projetos Destacados', desc: 'Uma seleção dos meus trabalhos recentes.', visit: 'Visitar', code: 'Código' },
@@ -193,7 +190,7 @@ export const translations = {
         footer: '© 2024 Tismodev. Todos os direitos reservados.'
     },
     de: {
-        nav: { projects: 'Projekte', workflow: 'Prozess', contact: 'Kontakt', cta: 'Starten' },
+        nav: { projects: 'Projekte', workflow: 'Prozess', contact: 'Kontakt', cta: 'Starten', skills: 'Fähigkeiten', locality: 'Standort' },
         hero: { badge: 'Verfügbar für Projekte', title1: 'Digitale Erlebnisse', title2: 'erschaffen', desc: 'Full-Stack-Entwickler spezialisiert auf moderne Webanwendungen und Discord-Bots.', cta1: 'Projekte ansehen', cta2: 'Kontakt', stats: { projects: 'Projekte', bots: 'Discord Bots', delivery: 'Express-Lieferung' } },
         workflow: { title: 'Meine Methode', steps: [{ title: 'Entdeckung', desc: 'Wir besprechen Ihre Vision' }, { title: 'Design', desc: 'Ich erstelle Prototypen' }, { title: 'Entwicklung', desc: 'Aufbau mit modernen Technologien' }, { title: 'Start', desc: 'Bereitstellung und Optimierung' }] },
         projects: { label: 'Portfolio', title: 'Ausgewählte Projekte', desc: 'Eine Auswahl meiner aktuellen Arbeiten.', visit: 'Besuchen', code: 'Code' },
@@ -201,7 +198,7 @@ export const translations = {
         footer: '© 2024 Tismodev. Alle Rechte vorbehalten.'
     },
     nl: {
-        nav: { projects: 'Projecten', workflow: 'Proces', contact: 'Contact', cta: 'Beginnen' },
+        nav: { projects: 'Projecten', workflow: 'Proces', contact: 'Contact', cta: 'Beginnen', skills: 'Vaardigheden', locality: 'Locatie' },
         hero: { badge: 'Beschikbaar voor projecten', title1: 'Digitale ervaringen', title2: 'bouwen', desc: 'Full-stack ontwikkelaar gespecialiseerd in moderne webapplicaties en Discord bots.', cta1: 'Projecten bekijken', cta2: 'Contact', stats: { projects: 'Projecten', bots: 'Discord Bots', delivery: 'Snelle Levering' } },
         workflow: { title: 'Mijn methode', steps: [{ title: 'Ontdekking', desc: 'We bespreken uw visie' }, { title: 'Ontwerp', desc: 'Ik maak prototypes' }, { title: 'Ontwikkeling', desc: 'Bouwen met moderne technologie' }, { title: 'Lancering', desc: 'Deployment en optimalisatie' }] },
         projects: { label: 'Portfolio', title: 'Uitgelichte Projecten', desc: 'Een selectie van mijn recente werk.', visit: 'Bezoeken', code: 'Code' },
@@ -209,7 +206,7 @@ export const translations = {
         footer: '© 2024 Tismodev. Alle rechten voorbehouden.'
     },
     it: {
-        nav: { projects: 'Progetti', workflow: 'Processo', contact: 'Contatto', cta: 'Inizia' },
+        nav: { projects: 'Progetti', workflow: 'Processo', contact: 'Contatto', cta: 'Inizia', skills: 'Competenze', locality: 'Posizione' },
         hero: { badge: 'Disponibile per progetti', title1: 'Creare esperienze', title2: 'Digitali', desc: 'Sviluppatore full-stack specializzato in applicazioni web moderne e bot Discord.', cta1: 'Vedi progetti', cta2: 'Contattami', stats: { projects: 'Progetti', bots: 'Bot Discord', delivery: 'Consegna Express' } },
         workflow: { title: 'Il mio metodo', steps: [{ title: 'Scoperta', desc: 'Discutiamo la tua visione' }, { title: 'Design', desc: 'Creo prototipi' }, { title: 'Sviluppo', desc: 'Costruzione con tecnologie moderne' }, { title: 'Lancio', desc: 'Deploy e ottimizzazione' }] },
         projects: { label: 'Portfolio', title: 'Progetti in Evidenza', desc: 'Una selezione dei miei lavori recenti.', visit: 'Visita', code: 'Codice' },

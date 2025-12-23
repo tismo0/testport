@@ -8,7 +8,7 @@ const inter = Inter({
   weight: ['300', '400', '500', '600', '700'],
 });
 
-// Separate viewport export (Next.js 14+ requirement)
+
 export const viewport = {
   themeColor: '#09090b',
   width: 'device-width',
@@ -56,7 +56,7 @@ export const metadata = {
     },
   },
 
-  // Canonical & alternates
+
   alternates: {
     canonical: 'https://tismodev.com/',
     languages: {
@@ -66,12 +66,12 @@ export const metadata = {
     },
   },
 
-  // Google verification
+
   verification: {
     google: 'google7312e4ca6d476d0f',
   },
 
-  // Open Graph
+
   openGraph: {
     type: "website",
     locale: "fr_FR",
@@ -90,7 +90,7 @@ export const metadata = {
     ],
   },
 
-  // Twitter
+
   twitter: {
     card: "summary_large_image",
     site: "@tismo_tech",
@@ -100,7 +100,7 @@ export const metadata = {
     images: ["/assets/logo.webp"],
   },
 
-  // Icons
+
   icons: {
     icon: [
       { url: "/favicon.ico" },
@@ -110,14 +110,14 @@ export const metadata = {
     shortcut: "/assets/favicon.svg",
   },
 
-  // Manifest (PWA ready)
+
   manifest: "/manifest.json",
 
-  // Category
+
   category: "technology",
 };
 
-// JSON-LD Structured Data
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
@@ -195,12 +195,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fr">
       <head>
-        {/* JSON-LD Structured Data */}
+
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {/* Preconnect for performance */}
+
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
