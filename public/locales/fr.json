@@ -1,0 +1,194 @@
+{
+  "meta": {
+    "title": "Tismodev | Développeur web freelance & bots Discord à Verviers (Belgique)",
+    "description": "Tismodev (Tismo dev), développeur full stack freelance web & Discord basé à Verviers (Belgique) : sites vitrines HTML/CSS/JavaScript, apps React & Next.js et back-end léger PHP avec SEO et support continu"
+  },
+  "brand": {
+    "name": "Tismodev • Développeur full stack freelance web & Discord",
+    "tagline": "Sites modernes & automatisations fiables",
+    "logoLabel": "Retour à l'accueil"
+  },
+  "menu": {
+    "open": "Ouvrir le menu",
+    "close": "Fermer le menu",
+    "toggleHint": "Menu & langues"
+  },
+  "nav": {
+    "services": "Services",
+    "projects": "Portfolio",
+    "faq": "FAQ SEO",
+    "process": "Process",
+    "contact": "Contact",
+    "cta": "Demander un devis"
+  },
+  "lang": {
+    "switchLabel": "Choisir la langue",
+    "hint": "Langue"
+  },
+  "og": {
+    "locale": "fr_FR",
+    "title": "Tismodev | Développeur web freelance & bots Discord à Verviers (Belgique)",
+    "description": "Tismodev imagine des sites vitrines performants, des bots Discord robustes et des intégrations SEO prêtes à ranker."
+  },
+  "twitter": {
+    "title": "Tismodev | Développeur web freelance & bots Discord à Verviers (Belgique)",
+    "description": "Tismodev livre des sites HTML, CSS, JavaScript rapides et des bots Discord automatisés avec suivi SEO."
+  },
+  "hero": {
+    "tag": "Tismodev • Développeur full stack freelance web & Discord",
+    "heading": "Des sites modernes et des bots Discord orientés résultats.",
+    "highlight": "Tismodev",
+    "description": "Je conçois des sites vitrines et apps React/Next.js rapides, avec back-end léger en PHP, formulaires dynamiques connectés à Google Sheets ou à une base de données, et bots Discord qui automatisent l'accueil, le support ou les ventes.",
+    "note": "Besoin d'un site de restaurant avec réservations, d'un salon de coiffure, d'une boutique locale ou d'un portfolio créatif ? Tismodev gère le design, le code et le SEO pour que tout soit en ligne et trouvé sur Google.",
+    "primaryCta": "Me contacter",
+    "secondaryCta": "Voir les réalisations"
+  },
+  "stats": {
+    "discord": "Bots Discord actifs (tickets, rôles, modération + modules sur mesure)",
+    "responsive": "Sites web responsives HTML • CSS • JavaScript • Tailwind • React/Next.js • PHP",
+    "express": "Support & mises à jour sous 72h"
+  },
+  "stack": {
+    "title": "Compétences clés",
+    "description": "Front-end HTML/CSS/JavaScript, React, Next.js et back-end PHP léger : intégrations API, automatisations et UI responsive pour sites vitrines et communautés.",
+    "skill": {
+      "bot": "Bots Discord sur mesure",
+      "server": "Intégrations & hébergement",
+      "ui": "UI/UX responsive",
+      "react": "React & Next.js",
+      "php": "PHP back-end léger",
+      "automation": "Scripts & automatisations",
+      "portfolio": "Sites vitrines & landing pages",
+      "transcripts": "HTML • CSS • JavaScript"
+    },
+    "note": "Je reste disponible après la mise en ligne : corrections, nouvelles sections, traductions et maintenance continue."
+  },
+  "services": {
+    "title": "Services pour accélérer ton projet digital",
+    "subtitle": "Des solutions concrètes pour restaurants, commerces locaux, associations ou serveurs Discord.",
+    "bot": {
+      "title": "Bots Discord professionnels",
+      "desc": "Tickets support, réponses automatiques, inscriptions évènementielles et intégrations Stripe ou Google Sheets directement dans ton serveur.",
+      "cta": "Découvrir un bot Discord"
+    },
+    "web": {
+      "title": "Sites web vitrines & landing pages",
+      "desc": "Sites vitrines modernes en HTML/CSS/JS ou React/Next.js pour restaurants, boutiques ou créateurs, avec formulaires, réservations et suivi analytique.",
+      "cta": "Analyser les projets web"
+    },
+    "automation": {
+      "title": "SEO & intégrations techniques",
+      "desc": "Je m'occupe du nom de domaine, des emails, des statistiques et de la Search Console pour que ton site soit prêt à apparaître sur Google.",
+      "cta": "Optimiser le SEO"
+    }
+  },
+  "faq": {
+    "title": "Questions fréquentes sur le SEO & le déploiement",
+    "subtitle": "Je t'explique simplement ce qu'est le SEO, comment ton site apparaît sur Google et ce que je fais pour toi.",
+    "q1": "C'est quoi le SEO pour mon site ?",
+    "a1": "C'est l'ensemble des réglages qui aident ton site à apparaître sur Google sans pub : textes, balises, structure des pages et vitesse de chargement.",
+    "q2": "Comment gères-tu l'indexation de mon site ?",
+    "a2": "Je connecte ton domaine, sécurise le HTTPS, crée ou mets à jour le sitemap et je le soumets dans Google Search Console pour que tes pages soient reconnues.",
+    "q3": "Que comprend ton accompagnement SEO ?",
+    "a3": "Je configure le domaine, les titres et descriptions de tes pages, les schémas pour Google et je t'aide à obtenir des liens externes fiables (backlinks) qui pointent vers ton site pour renforcer ton référencement. Je peux aussi t'envoyer un petit rapport de suivi si tu le souhaites.",
+    "cta": "Parler de ton SEO maintenant"
+  },
+  "projects": {
+    "title": "Réalisations web & bots Discord",
+    "subtitle": "Exemples de sites vitrines et solutions Discord livrés pour des associations, créateurs et serveurs professionnels.",
+    "media": {
+      "prev": "Image précédente",
+      "next": "Image suivante"
+    },
+    "asbl": {
+      "title": "Site vitrine pour ASBL • Collecte & newsletter",
+      "desc": "Site responsive avec mises en avant des missions, collecte de dons et intégration newsletter pour une association.",
+      "visit": "Visiter le site",
+      "alt": "Site vitrine pour association"
+    },
+    "tismotranslate": {
+      "title": "TismoTranslate • Traducteur IA multilingue",
+      "desc": "Traducteur intelligent alimenté par l'API Gemini Flash, supportant de nombreuses langues avec adaptation du registre (familier, courant, soutenu, professionnel).",
+      "visit": "Essayer TismoTranslate"
+    },
+    "discord": {
+      "title": "Bot Discord pour serveurs pros",
+      "desc": "Automation de tickets, rôles, transcripts et commandes sur mesure avec interface de recherche.",
+      "demo": "Voir la démo",
+      "scripts": "Scripts GitHub",
+      "alt": "Bot Discord professionnel"
+    },
+    "salon": {
+      "title": "Site salon de coiffure • Réservations & annonces",
+      "desc": "Site vitrine complet avec horaires, présentation, tarifs, galerie multi-photos, formulaire de réservation, calendrier et admin annonces/fermetures.",
+      "visit": "Voir le site",
+      "alt": "Interface du site salon de coiffure"
+    }
+  },
+  "process": {
+    "title": "Méthode de travail",
+    "subtitle": "Analyse, prototypage et livraison avec support continu pour ton site ou ton bot Discord.",
+    "step1": {
+      "title": "Diagnostic & cadrage",
+      "desc": "Audit de ton besoin, étude de ton audience et rédaction d'un plan d'action clair."
+    },
+    "step2": {
+      "title": "Prototype & itérations",
+      "desc": "Prototype interactif validé ensemble avant développement complet et automatisations."
+    },
+    "step3": {
+      "title": "Livraison & suivi",
+      "desc": "Mise en production, documentation et maintenance évolutive avec SLA 72h."
+    },
+    "cta": "Discuter de ton projet"
+  },
+  "contact": {
+    "title": "Prêt à lancer ton site ou ton bot ?",
+    "subtitle": "Choisis un canal et lançons ton site web ou ton bot Discord avec l'accompagnement Tismodev, développeur web freelance basé à Verviers (Belgique).",
+    "direct": "Contact direct Tismodev (Tismo dev)",
+    "discord": "Discord&nbsp;: <strong>Rejoins le serveur, ouvre un ticket et contacte l'équipe Tismodev</strong>. Tu peux aussi cliquer sur le bouton pour remplir le brief rapide ou me contacter sur Instagram.",
+    "hosting": "Inclus : hébergement gratuit sur un sous-domaine. Domaine personnalisé (.com, .be...) disponible en option.",
+    "benefits": {
+      "title": "Inclus dans chaque projet Tismodev",
+      "hostingTitle": "Hébergement offert",
+      "hostingDesc": "Livraison avec un hébergement gratuit sur un sous-domaine. Domaine personnalisé (.com, .be, .fr, .net, .xyz...) disponible en option abordable.",
+      "seoTitle": "SEO performant",
+      "seoDesc": "SEO technique minimal inclus pour l'indexation. Pack SEO boost optionnel à petit prix pour viser les premières positions."
+    },
+    "discordLink": "Serveur Discord",
+    "instagramLink": "Instagram",
+    "whatsappLink": "WhatsApp / Téléphone",
+    "options": {
+      "title": "Prestations populaires",
+      "bot": "Bot Discord avancé : +5 commandes, scripts sur mesure & support hébergement",
+      "site": "Site vitrine moderne + domaine .com et SEO avancé",
+      "portfolio": "Redesign de site ou placement de domaine + SEO"
+    }
+  },
+  "form": {
+    "title": "Brief rapide",
+    "subtitle": "Décris ton besoin, je te réponds sous 24h ouvrées.",
+    "name": "Nom complet",
+    "email": "Adresse e-mail",
+    "project": "Type de projet",
+    "projectBot": "Bot Discord",
+    "projectSite": "Site vitrine / landing page",
+    "projectSeo": "SEO & intégrations techniques",
+    "projectOther": "Autre besoin",
+    "message": "Explique ton projet, tes objectifs et ton délai",
+    "submit": "Envoyer la demande",
+    "required": "Tous les champs sont requis. Tu recevras une confirmation automatique après envoi."
+  },
+  "share": {
+    "title": "Partager la page",
+    "lead": "Tu connais un entrepreneur ou un serveur Discord qui a besoin d'aide ? Partage ce portfolio.",
+    "twitter": "Partager sur X",
+    "linkedin": "Partager sur LinkedIn"
+  },
+  "footer": {
+    "copy": "© <span data-year></span> Tismodev · Développeur full stack freelance web & Discord. Support inclus."
+  },
+  "scrollTop": {
+    "label": "Retour en haut"
+  }
+}

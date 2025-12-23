@@ -1,0 +1,194 @@
+{
+    "meta": {
+        "title": "Tismodev | Full stack freelance web & Discord developer",
+        "description": "Tismodev (Tismo dev), full stack freelance web & Discord developer: HTML/CSS/JavaScript showcase sites, React & Next.js apps and lightweight PHP back-end with SEO and continuous support"
+    },
+    "brand": {
+        "name": "Tismodev • Full stack freelance web & Discord developer",
+        "tagline": "Built by Tismodev for modern brands and communities",
+        "logoLabel": "Back to home"
+    },
+    "menu": {
+        "open": "Open menu",
+        "close": "Close menu",
+        "toggleHint": "Menu & languages"
+    },
+    "nav": {
+        "services": "Services",
+        "projects": "Portfolio",
+        "faq": "FAQ",
+        "process": "Process",
+        "contact": "Contact",
+        "cta": "Request a quote"
+    },
+    "lang": {
+        "switchLabel": "Switch language",
+        "hint": "Language"
+    },
+    "og": {
+        "locale": "en_US",
+        "title": "Tismodev | Full stack freelance web & Discord developer",
+        "description": "Tismodev builds high-performing marketing sites, dependable Discord bots and SEO integrations ready to rank."
+    },
+    "twitter": {
+        "title": "Tismodev | Web & Discord bot studio",
+        "description": "Tismodev ships fast HTML, CSS, JavaScript websites and automated Discord bots with ongoing SEO support."
+    },
+    "hero": {
+        "tag": "Tismodev • Full stack freelance web & Discord developer",
+        "heading": "Modern websites and automation that convert.",
+        "highlight": "Tismodev",
+        "description": "Tismodev ships fast HTML/CSS/JS or React/Next.js marketing sites, lightweight PHP back-ends, forms wired to Google Sheets or databases, and Discord bots that automate onboarding, tickets and moderation.",
+        "note": "Powered by Tismodev: strategy, design, code and SEO wrapped into one dependable studio.",
+        "primaryCta": "Contact me",
+        "secondaryCta": "See the work"
+    },
+    "stats": {
+        "discord": "Active Discord bots (tickets, roles, moderation + custom modules)",
+        "responsive": "Responsive websites in HTML • CSS • JavaScript • Tailwind • React/Next.js • PHP",
+        "express": "Support and updates within 72h"
+    },
+    "stack": {
+        "title": "Core capabilities",
+        "description": "Front-end in HTML/CSS/JavaScript, React, Next.js plus lightweight PHP back-ends, API integrations, workflow automation and responsive UI for marketing sites and communities.",
+        "skill": {
+            "bot": "Custom Discord bots",
+            "server": "Integrations & hosting",
+            "ui": "Responsive UI/UX",
+            "react": "React & Next.js",
+            "php": "PHP back-end",
+            "automation": "Scripts & automation",
+            "portfolio": "Landing pages & portfolios",
+            "transcripts": "HTML • CSS • JavaScript"
+        },
+        "note": "I handle discovery, design, development, documentation and long-term support."
+    },
+    "services": {
+        "title": "Services to move your product forward",
+        "subtitle": "Results-driven packages for professional websites, Discord automation and technical maintenance.",
+        "bot": {
+            "title": "Professional Discord bots",
+            "desc": "Ticketing, auto roles, admin commands and API integrations tailored to your community.",
+            "cta": "Review a Discord bot"
+        },
+        "web": {
+            "title": "Website & landing page builds",
+            "desc": "Custom marketing sites and landing pages in HTML/CSS/JS or React/Next.js with analytics, lightweight PHP integrations and SEO baked in.",
+            "cta": "Review web projects"
+        },
+        "automation": {
+            "title": "SEO & technical setup",
+            "desc": "Full SEO setup, hosting, custom domain configuration and Search Console monitoring for fast indexing.",
+            "cta": "Plan SEO session"
+        }
+    },
+    "faq": {
+        "title": "SEO & launch questions",
+        "subtitle": "Understand how I secure your domain, improve search visibility and keep indexing on track.",
+        "q1": "How do you make sure my site gets indexed fast?",
+        "a1": "I connect your custom domain, enforce HTTPS redirects, submit the sitemap and monitor Google Search Console until pages are live.",
+        "q2": "Can you improve SEO on an existing site?",
+        "a2": "Yes. I audit your pages, fix metadata, enhance content, and configure analytics tools without breaking the current design.",
+        "q3": "What's included in your SEO support?",
+        "a3": "Custom domain setup, precise metadata, Open Graph tags, JSON-LD schemas and optional monthly tracking depending on your needs.",
+        "cta": "Talk about your SEO"
+    },
+    "projects": {
+        "title": "Websites & Discord bots delivered",
+        "subtitle": "Selected projects showing how design, code and automation drive community and business goals.",
+        "media": {
+            "prev": "Previous image",
+            "next": "Next image"
+        },
+        "asbl": {
+            "title": "Non-profit website • Donations & newsletter",
+            "desc": "Responsive showcase site highlighting the mission, collecting donations and syncing newsletter sign-ups.",
+            "visit": "Visit website",
+            "alt": "Non-profit showcase website"
+        },
+        "tismotranslate": {
+            "title": "TismoTranslate • AI Multilingual Translator",
+            "desc": "Intelligent translator powered by Gemini Flash API, supporting many languages with register adaptation (casual, standard, formal, professional).",
+            "visit": "Try TismoTranslate"
+        },
+        "discord": {
+            "title": "Discord bot for pro servers",
+            "desc": "Automated tickets, role management, transcripts and search interface for support teams.",
+            "demo": "View demo",
+            "scripts": "GitHub scripts",
+            "alt": "Professional Discord bot"
+        },
+        "salon": {
+            "title": "Hair salon website • Booking & announcements",
+            "desc": "Full-featured site with public hours, story, pricing grid, multi-photo gallery, booking form, calendar and admin news/closures.",
+            "visit": "Access the live site",
+            "alt": "Hair salon website interface"
+        }
+    },
+    "process": {
+        "title": "Workflow",
+        "subtitle": "Discovery, prototyping and delivery with continuous support for your website or Discord bot.",
+        "step1": {
+            "title": "Discovery & scope",
+            "desc": "Audit requirements, target audience and success metrics to build a clear action plan."
+        },
+        "step2": {
+            "title": "Prototype & iterations",
+            "desc": "Interactive prototype validated together before full development and automation setup."
+        },
+        "step3": {
+            "title": "Delivery & support",
+            "desc": "Production launch, documentation and ongoing maintenance with a 72h SLA."
+        },
+        "cta": "Discuss your project"
+    },
+    "contact": {
+        "title": "Ready to launch your site or bot?",
+        "subtitle": "Pick your channel and launch with Tismodev. Fast quotes and end-to-end support.",
+        "direct": "Direct contact with Tismodev (Tismo dev)",
+        "discord": "Discord:&nbsp;<strong>Join the server, open a ticket and reach the Tismodev team</strong>. You can also click the button to fill the quick brief or reach me on Instagram.",
+        "hosting": "Included: free hosting on a subdomain. Paid custom domains (.com, .be, etc.) available on request.",
+        "benefits": {
+            "title": "What every Tismodev project includes",
+            "hostingTitle": "Hosting included",
+            "hostingDesc": "Delivery with free hosting on a subdomain. Optional custom domains (.com, .be, .fr, .net, .xyz, etc.) available for a low add-on fee.",
+            "seoTitle": "High-performance SEO",
+            "seoDesc": "Minimal technical SEO included for indexing. Optional low-cost SEO boost available to target top rankings."
+        },
+        "discordLink": "Discord server",
+        "instagramLink": "Instagram",
+        "whatsappLink": "WhatsApp / Phone",
+        "options": {
+            "title": "Popular services",
+            "bot": "Advanced Discord bot: 5+ commands, custom scripts & hosting assistance",
+            "site": "Modern marketing site + custom .com domain and advanced SEO",
+            "portfolio": "Website redesign or domain placement + SEO"
+        }
+    },
+    "form": {
+        "title": "Quick brief",
+        "subtitle": "Share what you need and I'll reply within 1 business day.",
+        "name": "Full name",
+        "email": "Email address",
+        "project": "Project type",
+        "projectBot": "Discord bot",
+        "projectSite": "Website / landing page",
+        "projectSeo": "SEO & technical setup",
+        "projectOther": "Other",
+        "message": "Describe your goals, feature list and timeline",
+        "submit": "Send request",
+        "required": "All fields are required. You'll receive an automatic confirmation after sending."
+    },
+    "share": {
+        "title": "Share this page",
+        "lead": "Know a creator or team that needs help? Share this portfolio with them.",
+        "twitter": "Share on X",
+        "linkedin": "Share on LinkedIn"
+    },
+    "footer": {
+        "copy": "© <span data-year></span> Tismodev · Full stack freelance web & Discord developer. Support included."
+    },
+    "scrollTop": {
+        "label": "Back to top"
+    }
+}

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tismodev.com/sitemap.xml
