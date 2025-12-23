@@ -1,12 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import {
   Menu, X, Send, ChevronLeft, ChevronRight, ExternalLink, Github,
   MessageSquare, Palette, Code2, Rocket, CheckCircle2, Loader2,
-  Clock, Zap, Shield
+  Clock, Zap, Shield, ChevronUp
 } from 'lucide-react';
 
 // ============================================================================
@@ -450,6 +450,45 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* ============ SCROLL TO TOP ============ */}
+      <ScrollToTop />
     </div>
+  );
+}
+
+// ============================================================================
+// SCROLL TO TOP BUTTON
+// ============================================================================
+function ScrollToTop() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const toggleVisibility = () => {
+      setVisible(window.scrollY > 400);
+    };
+    window.addEventListener('scroll', toggleVisibility);
+    return () => window.removeEventListener('scroll', toggleVisibility);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  return (
+    <AnimatePresence>
+      {visible && (
+        <motion.button
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.8 }}
+          onClick={scrollToTop}
+          className="fixed bottom-6 right-6 z-50 w-12 h-12 bg-zinc-800 border border-zinc-700 rounded-full flex items-center justify-center text-zinc-300 hover:bg-zinc-700 hover:text-white shadow-lg transition-colors cursor-pointer"
+          aria-label="Scroll to top"
+        >
+          <ChevronUp size={24} />
+        </motion.button>
+      )}
+    </AnimatePresence>
   );
 }
