@@ -333,7 +333,7 @@ function FloatingLines() {
   });
 
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 opacity-60">
       <svg
         viewBox="0 0 100 100"
         preserveAspectRatio="none"
@@ -533,6 +533,8 @@ export default function Home() {
   return (
     <div className={`min-h-screen bg-zinc-950 text-zinc-100 font-sans antialiased ${isRTL ? 'rtl' : ''}`} dir={isRTL ? 'rtl' : 'ltr'}>
 
+      <FloatingLines />
+
       {/* ============ GOOEY NAV - Top Bar ============ */}
       {/* SVG Filter for Gooey Effect */}
       <svg className="hidden">
@@ -698,9 +700,6 @@ export default function Home() {
 
       {/* ============ HERO ============ */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-28">
-        {/* Floating Lines Background */}
-        <FloatingLines />
-
         {/* Spotlight Effect */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-gradient-to-b from-violet-500/20 via-fuchsia-500/10 to-transparent rounded-full blur-3xl" />
@@ -1017,7 +1016,7 @@ export default function Home() {
 
       {/* ============ SCROLL TO TOP ============ */}
       <ScrollToTop />
-    </div>
+    </div >
   );
 }
 
