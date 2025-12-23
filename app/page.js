@@ -367,6 +367,115 @@ function FloatingLines() {
 }
 
 // ============================================================================
+// MAGIC CARD COMPONENT - Spotlight, Tilt, Glow, Stars
+// ============================================================================
+function MagicCard({ children, className = '' }) {
+  const cardRef = useRef(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
+  const [stars, setStars] = useState([]);
+
+  useEffect(() => {
+    // Generate random stars on mount
+    setStars(Array.from({ length: 8 }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: 2 + Math.random() * 3,
+      delay: Math.random() * 2,
+    })));
+  }, []);
+
+  const handleMouseMove = (e) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    setMousePos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
+    });
+  };
+
+  const handleMouseEnter = () => setIsHovered(true);
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    setMousePos({ x: 0, y: 0 });
+  };
+
+  // Calculate tilt based on mouse position
+  const tiltX = isHovered ? ((mousePos.y / (cardRef.current?.offsetHeight || 1)) - 0.5) * -10 : 0;
+  const tiltY = isHovered ? ((mousePos.x / (cardRef.current?.offsetWidth || 1)) - 0.5) * 10 : 0;
+
+  return (
+    <motion.div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        transform: `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`,
+        transformStyle: 'preserve-3d',
+      }}
+      className={`relative overflow-hidden ${className}`}
+      whileHover={{ scale: 1.02 }}
+      transition={{ duration: 0.3, ease: 'easeOut' }}
+    >
+      {/* Spotlight effect */}
+      <div
+        className="pointer-events-none absolute inset-0 z-10 transition-opacity duration-300"
+        style={{
+          opacity: isHovered ? 1 : 0,
+          background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(139, 92, 246, 0.15), transparent 40%)`,
+        }}
+      />
+
+      {/* Border glow effect */}
+      <div
+        className="pointer-events-none absolute inset-0 z-20 rounded-2xl transition-opacity duration-300"
+        style={{
+          opacity: isHovered ? 1 : 0,
+          boxShadow: `inset 0 0 0 1px rgba(139, 92, 246, 0.5), 0 0 40px -10px rgba(139, 92, 246, 0.3)`,
+        }}
+      />
+
+      {/* Floating stars */}
+      {isHovered && stars.map((star) => (
+        <motion.div
+          key={star.id}
+          className="absolute pointer-events-none z-30"
+          style={{
+            left: `${star.x}%`,
+            top: `${star.y}%`,
+            width: star.size,
+            height: star.size,
+          }}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{
+            opacity: [0, 1, 0],
+            scale: [0, 1, 0],
+            y: [0, -20],
+          }}
+          transition={{
+            duration: 1.5,
+            delay: star.delay,
+            repeat: Infinity,
+            ease: 'easeOut'
+          }}
+        >
+          <svg viewBox="0 0 24 24" fill="currentColor" className="text-violet-400 w-full h-full">
+            <path d="M12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2Z" />
+          </svg>
+        </motion.div>
+      ))}
+
+      {/* Card content */}
+      <div className="relative z-0">
+        {children}
+      </div>
+    </motion.div>
+  );
+}
+
+// ============================================================================
 // MAIN PAGE COMPONENT
 // ============================================================================
 export default function Home() {
@@ -599,37 +708,41 @@ export default function Home() {
           {/* Bento Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project, i) => (
-              <motion.article
+              <MagicCard
                 key={project.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ delay: i * 0.1 }}
-                className="group flex flex-col bg-zinc-900/50 border border-zinc-800 rounded-2xl overflow-hidden hover:border-zinc-700 hover:shadow-[0_0_60px_-15px_rgba(139,92,246,0.15)] transition-all duration-300"
+                className="flex flex-col bg-zinc-900/50 border border-zinc-800 rounded-2xl"
               >
-                <div className="p-3">
-                  <ImageCarousel images={project.images} title={project.title} />
-                </div>
-                <div className="flex flex-col flex-1 p-5 pt-2">
-                  <h3 className="font-semibold text-white mb-2">{project.title}</h3>
-                  <p className="text-sm text-zinc-500 mb-4 flex-1">{project.desc}</p>
-                  <div className="flex flex-wrap gap-1.5 mb-4">
-                    {project.tech.map((t) => (
-                      <span key={t} className="px-2 py-0.5 text-xs font-medium bg-zinc-800 text-zinc-400 rounded-md border border-zinc-700/50">{t}</span>
-                    ))}
+                <motion.article
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ delay: i * 0.1 }}
+                  className="flex flex-col flex-1"
+                >
+                  <div className="p-3">
+                    <ImageCarousel images={project.images} title={project.title} />
                   </div>
-                  <div className="flex gap-2 pt-3 border-t border-zinc-800">
-                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-zinc-300 bg-zinc-800/60 rounded-lg hover:bg-zinc-700 hover:text-white transition-all">
-                      <ExternalLink size={14} /> {t.projects.visit}
-                    </a>
-                    {project.github && (
-                      <a href={project.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-zinc-300 bg-zinc-800/60 rounded-lg hover:bg-zinc-700 hover:text-white transition-all">
-                        <Github size={14} /> {t.projects.code}
+                  <div className="flex flex-col flex-1 p-5 pt-2">
+                    <h3 className="font-semibold text-white mb-2">{project.title}</h3>
+                    <p className="text-sm text-zinc-500 mb-4 flex-1">{project.desc}</p>
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      {project.tech.map((techItem) => (
+                        <span key={techItem} className="px-2 py-0.5 text-xs font-medium bg-zinc-800 text-zinc-400 rounded-md border border-zinc-700/50">{techItem}</span>
+                      ))}
+                    </div>
+                    <div className="flex gap-2 pt-3 border-t border-zinc-800">
+                      <a href={project.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-zinc-300 bg-zinc-800/60 rounded-lg hover:bg-zinc-700 hover:text-white transition-all">
+                        <ExternalLink size={14} /> {t.projects.visit}
                       </a>
-                    )}
+                      {project.github && (
+                        <a href={project.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-zinc-300 bg-zinc-800/60 rounded-lg hover:bg-zinc-700 hover:text-white transition-all">
+                          <Github size={14} /> {t.projects.code}
+                        </a>
+                      )}
+                    </div>
                   </div>
-                </div>
-              </motion.article>
+                </motion.article>
+              </MagicCard>
             ))}
           </div>
         </div>
