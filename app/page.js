@@ -271,7 +271,7 @@ const techStack = [
 ];
 
 
-function LogoLoop({ items, speed = 15 }) {
+function LogoLoop({ items, speed = 40 }) {
   return (
     <div className="relative overflow-hidden py-8">
 
