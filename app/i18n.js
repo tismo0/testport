@@ -75,6 +75,51 @@ export const translations = {
                 sent: 'Sent!'
             }
         },
+        projectItems: [
+            { title: 'Non-Profit Website', desc: 'Complete website for a peace association with donations, newsletter, and event management.' },
+            { title: 'Tismo Copywriting', desc: 'Advanced translation tool with intelligent tone adaptation and context-aware rewriting.' },
+            { title: 'ZetaCVC Discord Bot', desc: 'Enterprise Discord bot with ticket system, role management, and moderation tools.' },
+            { title: 'Salon Booking', desc: 'Elegant booking platform with appointment scheduling and responsive mobile design.' }
+        ],
+        verviers: {
+            badge: 'Verviers • Province of Liège • Belgium',
+            title1: 'Fullstack Web Developer',
+            title2: 'in Verviers',
+            heroDesc: 'Professional website and custom web application development for businesses in Verviers, Heusy, Ensival and throughout the Province of Liège.',
+            cta1: 'Get a free quote',
+            cta2: 'Call now',
+            partnerTitle: 'Your digital partner in the Verviers district',
+            partnerP1: 'Based in Verviers, in the heart of the Province of Liège, I am Tismodev, a fullstack web developer specializing in website and modern web application creation.',
+            partnerP2: 'On the banks of the Vesdre, I put my technical expertise at the service of local entrepreneurs. From simple showcase sites for your Verviers restaurant to complex web applications with databases, I develop SEO-friendly solutions.',
+            servicesTitle: 'Web development services in Verviers',
+            servicesDesc: 'Solutions tailored to the needs of businesses in the Verviers district and throughout Belgium.',
+            services: [
+                { title: 'Professional showcase sites', desc: 'Modern sites for restaurants, hair salons, craftsmen and shops in Verviers. Responsive and mobile-optimized design.' },
+                { title: 'Custom web applications', desc: 'React and Next.js development for high-performance applications: online booking, customer areas, dashboards.' },
+                { title: 'Back-end & databases', desc: 'Robust APIs with Node.js and Supabase. Connection to your existing tools, automations and third-party integrations.' },
+                { title: 'SEO & local referencing', desc: 'Google optimization to appear in local searches in Verviers, Liège and throughout Belgium.' },
+                { title: 'Website redesign', desc: 'Modernizing your current site with the latest technologies. Migration to a faster and better-referenced site.' },
+                { title: 'Maintenance & 72h support', desc: 'Continuous support after delivery. Corrections, updates and new features within 72h.' }
+            ],
+            techTitle: 'Mastered Fullstack Technologies',
+            techDesc: 'I use the most modern technologies to create fast, secure and scalable sites for businesses in Verviers and the Province of Liège.',
+            whyTitle: 'Why choose a local web developer in Verviers?',
+            whyItems: [
+                'Geographic proximity: possible meetings in Verviers, Spa, Malmedy or anywhere in the district',
+                'Knowledge of the local economic fabric and specific needs of Belgian SMEs',
+                'Guaranteed responsiveness with support within 72 hours maximum',
+                'Rates adapted to the budgets of self-employed and small businesses',
+                'Direct communication in French, without intermediary or agency'
+            ],
+            zoneTitle: 'Area of intervention',
+            zoneDesc: 'I mainly work with clients from the Verviers district and the Province of Liège, but I also carry out projects for all of Belgium and internationally.',
+            ctaTitle: 'Ready to launch your web project in Verviers?',
+            ctaDesc: 'Contact me to discuss your project. Free quote within 24h.',
+            ctaForm: 'Contact form',
+            location: 'Verviers, Province of Liège, Belgium',
+            footerText: '© 2024 Tismodev • Fullstack Web Developer in Verviers',
+            backToPortfolio: '← Back to portfolio'
+        },
         footer: '© 2024 Tismodev. All rights reserved.'
     },
     fr: {
@@ -138,6 +183,51 @@ export const translations = {
                 sending: 'Envoi...',
                 sent: 'Envoyé !'
             }
+        },
+        projectItems: [
+            { title: 'Site Associatif', desc: 'Site complet pour une association de paix avec dons, newsletter et gestion d\'événements.' },
+            { title: 'Tismo Copywriting', desc: 'Outil de traduction avancé avec adaptation intelligente du ton et réécriture contextuelle.' },
+            { title: 'ZetaCVC Bot Discord', desc: 'Bot Discord professionnel avec système de tickets, gestion des rôles et outils de modération.' },
+            { title: 'Réservation Salon', desc: 'Plateforme élégante de réservation avec prise de rendez-vous et design mobile responsive.' }
+        ],
+        verviers: {
+            badge: 'Verviers • Province de Liège • Belgique',
+            title1: 'Développeur Web Fullstack',
+            title2: 'à Verviers',
+            heroDesc: 'Création de sites internet professionnels et applications web sur mesure pour les entreprises de Verviers, Heusy, Ensival et toute la Province de Liège.',
+            cta1: 'Demander un devis gratuit',
+            cta2: 'Appeler maintenant',
+            partnerTitle: 'Votre partenaire digital dans l\'arrondissement de Verviers',
+            partnerP1: 'Basé à Verviers, au cœur de la Province de Liège, je suis Tismodev, développeur web fullstack spécialisé dans la création de sites internet et d\'applications web modernes.',
+            partnerP2: 'Sur les rives de la Vesdre, je mets mon expertise technique au service des entrepreneurs locaux. Du simple site vitrine pour votre restaurant verviétois jusqu\'à l\'application web complexe avec base de données, je développe des solutions SEO-friendly.',
+            servicesTitle: 'Services de développement web à Verviers',
+            servicesDesc: 'Des solutions adaptées aux besoins des entreprises de l\'arrondissement de Verviers et de toute la Belgique.',
+            services: [
+                { title: 'Sites vitrines professionnels', desc: 'Sites modernes pour restaurants, salons de coiffure, artisans et commerces de Verviers. Design responsive et optimisé pour mobile.' },
+                { title: 'Applications web sur mesure', desc: 'Développement React et Next.js pour des applications performantes : réservations en ligne, espaces clients, dashboards.' },
+                { title: 'Back-end & bases de données', desc: 'APIs robustes avec Node.js et Supabase. Connexion à vos outils existants, automatisations et intégrations tierces.' },
+                { title: 'SEO & référencement local', desc: 'Optimisation pour Google afin d\'apparaître dans les recherches locales à Verviers, Liège et dans toute la Belgique.' },
+                { title: 'Refonte de site existant', desc: 'Modernisation de votre site actuel avec les dernières technologies. Migration vers un site plus rapide et mieux référencé.' },
+                { title: 'Maintenance & support 72h', desc: 'Accompagnement continu après livraison. Corrections, mises à jour et nouvelles fonctionnalités sous 72h.' }
+            ],
+            techTitle: 'Technologies Fullstack maîtrisées',
+            techDesc: 'J\'utilise les technologies les plus modernes pour créer des sites rapides, sécurisés et évolutifs pour les entreprises de Verviers et de la Province de Liège.',
+            whyTitle: 'Pourquoi choisir un développeur web local à Verviers ?',
+            whyItems: [
+                'Proximité géographique : rencontres possibles à Verviers, Spa, Malmedy ou partout dans l\'arrondissement',
+                'Connaissance du tissu économique local et des besoins spécifiques des PME belges',
+                'Réactivité garantie avec un support sous 72h maximum',
+                'Tarifs adaptés aux budgets des indépendants et petites entreprises',
+                'Communication directe en français, sans intermédiaire ni agence'
+            ],
+            zoneTitle: 'Zone d\'intervention',
+            zoneDesc: 'Je travaille principalement avec des clients de l\'arrondissement de Verviers et de la Province de Liège, mais je réalise également des projets pour toute la Belgique et à l\'international.',
+            ctaTitle: 'Prêt à lancer votre projet web à Verviers ?',
+            ctaDesc: 'Contactez-moi pour discuter de votre projet. Devis gratuit sous 24h.',
+            ctaForm: 'Formulaire de contact',
+            location: 'Verviers, Province de Liège, Belgique',
+            footerText: '© 2024 Tismodev • Développeur Web Fullstack à Verviers',
+            backToPortfolio: '← Retour au portfolio'
         },
         footer: '© 2024 Tismodev. Tous droits réservés.'
     },

@@ -271,7 +271,7 @@ const techStack = [
 ];
 
 
-function LogoLoop({ items, speed = 40 }) {
+function LogoLoop({ items, speed = 70 }) {
   return (
     <div className="relative overflow-hidden py-8">
 
@@ -886,8 +886,8 @@ export default function Home() {
                     <ImageCarousel images={project.images} title={project.title} />
                   </div>
                   <div className="flex flex-col flex-1 p-5 pt-2">
-                    <h3 className="font-semibold text-white mb-2">{project.title}</h3>
-                    <p className="text-sm text-zinc-500 mb-4 flex-1">{project.desc}</p>
+                    <h3 className="font-semibold text-white mb-2">{t.projectItems?.[i]?.title || project.title}</h3>
+                    <p className="text-sm text-zinc-500 mb-4 flex-1">{t.projectItems?.[i]?.desc || project.desc}</p>
                     <div className="flex flex-wrap gap-1.5 mb-4">
                       {project.tech.map((techItem) => (
                         <span key={techItem} className="px-2 py-0.5 text-xs font-medium bg-zinc-800 text-zinc-400 rounded-md border border-zinc-700/50">{techItem}</span>
