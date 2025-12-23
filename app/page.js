@@ -268,6 +268,105 @@ function LogoLoop({ items, speed = 30 }) {
 }
 
 // ============================================================================
+// FLOATING LINES BACKGROUND COMPONENT
+// ============================================================================
+function FloatingLines() {
+  const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePos({
+        x: e.clientX / window.innerWidth,
+        y: e.clientY / window.innerHeight
+      });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  const lines = Array.from({ length: 12 }, (_, i) => {
+    const baseY = 20 + (i * 6);
+    const offset = Math.sin(i * 0.5) * 10;
+    const bendX = 50 + (mousePos.x - 0.5) * 30;
+    const bendY = baseY + (mousePos.y - 0.5) * 15 + offset;
+
+    return {
+      id: i,
+      d: `M 0 ${baseY} Q ${bendX} ${bendY} 100 ${baseY + offset * 0.5}`,
+      opacity: 0.1 + (i % 3) * 0.05,
+      delay: i * 0.1,
+      duration: 3 + (i % 3),
+    };
+  });
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <svg
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+        className="absolute inset-0 w-full h-full"
+      >
+        <defs>
+          <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="transparent" />
+            <stop offset="20%" stopColor="#8b5cf6" />
+            <stop offset="50%" stopColor="#ec4899" />
+            <stop offset="80%" stopColor="#8b5cf6" />
+            <stop offset="100%" stopColor="transparent" />
+          </linearGradient>
+        </defs>
+        {lines.map((line) => (
+          <motion.path
+            key={line.id}
+            d={line.d}
+            fill="none"
+            stroke="url(#lineGradient)"
+            strokeWidth="0.15"
+            opacity={line.opacity}
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{
+              pathLength: 1,
+              opacity: line.opacity,
+              d: line.d
+            }}
+            transition={{
+              pathLength: { duration: 2, delay: line.delay },
+              opacity: { duration: 1, delay: line.delay },
+              d: { duration: 0.3, ease: "easeOut" }
+            }}
+          />
+        ))}
+      </svg>
+
+      {/* Floating particles */}
+      <div className="absolute inset-0">
+        {Array.from({ length: 20 }, (_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-violet-500/30 rounded-full"
+            style={{
+              left: `${10 + (i * 4.5)}%`,
+              top: `${20 + Math.sin(i) * 30}%`,
+            }}
+            animate={{
+              y: [0, -20, 0],
+              opacity: [0.2, 0.5, 0.2],
+              scale: [1, 1.5, 1],
+            }}
+            transition={{
+              duration: 3 + (i % 3),
+              repeat: Infinity,
+              delay: i * 0.2,
+              ease: "easeInOut"
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ============================================================================
 // MAIN PAGE COMPONENT
 // ============================================================================
 export default function Home() {
@@ -349,8 +448,11 @@ export default function Home() {
 
       {/* ============ HERO ============ */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+        {/* Floating Lines Background */}
+        <FloatingLines />
+
         {/* Spotlight Effect */}
-        <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-gradient-to-b from-violet-500/20 via-fuchsia-500/10 to-transparent rounded-full blur-3xl" />
           <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-zinc-700 to-transparent" />
         </div>

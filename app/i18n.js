@@ -19,13 +19,13 @@ export const translations = {
     en: {
         nav: { projects: 'Projects', workflow: 'Workflow', contact: 'Contact', cta: 'Get Started', skills: 'Skills' },
         hero: {
-            badge: 'Available for Projects',
-            title1: 'Building Digital',
-            title2: 'Experiences',
-            desc: 'Full-stack developer specializing in modern web applications, Discord bots, and creative digital solutions.',
+            badge: 'Freelance Developer',
+            title1: 'Modern Websites',
+            title2: '& Discord Bots',
+            desc: 'I build showcase websites for restaurants, hairdressers, portfolios and local businesses. React/Next.js apps with APIs, Supabase databases, dynamic forms connected to Google Sheets, and Discord bots for support, ticketing and automation.',
             cta1: 'View Projects',
-            cta2: 'Get in Touch',
-            stats: { projects: 'Projects', bots: 'Discord Bots', delivery: 'Express Delivery' }
+            cta2: 'Get a Quote',
+            stats: { projects: 'Websites Delivered', bots: 'Active Discord Bots', delivery: 'Express Support' }
         },
         workflow: {
             title: 'How I Work',
@@ -83,13 +83,13 @@ export const translations = {
     fr: {
         nav: { projects: 'Projets', workflow: 'Processus', contact: 'Contact', cta: 'Commencer', skills: 'Compétences' },
         hero: {
-            badge: 'Disponible pour vos projets',
-            title1: 'Créateur d\'expériences',
-            title2: 'Numériques',
-            desc: 'Développeur full-stack spécialisé dans les applications web modernes, bots Discord et solutions digitales créatives.',
-            cta1: 'Voir les projets',
-            cta2: 'Me contacter',
-            stats: { projects: 'Projets', bots: 'Bots Discord', delivery: 'Livraison Express' }
+            badge: 'Développeur Freelance',
+            title1: 'Sites Modernes',
+            title2: '& Bots Discord',
+            desc: 'Je crée des sites vitrines pour restaurants, salons de coiffure, portfolios et commerces locaux. Apps React/Next.js avec APIs, bases de données Supabase, formulaires dynamiques connectés à Google Sheets, et bots Discord pour le support, ticketing et automatisations.',
+            cta1: 'Voir les réalisations',
+            cta2: 'Demander un devis',
+            stats: { projects: 'Sites livrés', bots: 'Bots Discord actifs', delivery: 'Support Express' }
         },
         workflow: {
             title: 'Ma méthode',
