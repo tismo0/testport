@@ -542,125 +542,114 @@ export default function Home() {
   return (
     <div className={`min-h-screen bg-zinc-950 text-zinc-100 font-sans antialiased ${isRTL ? 'rtl' : ''}`} dir={isRTL ? 'rtl' : 'ltr'}>
 
-      {/* ============ GOOEY NAV - Right Side ============ */}
+      {/* ============ GOOEY NAV - Top Bar ============ */}
       {/* SVG Filter for Gooey Effect */}
       <svg className="hidden">
         <defs>
           <filter id="goo">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+            <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur" />
             <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10" result="goo" />
             <feComposite in="SourceGraphic" in2="goo" operator="atop" />
           </filter>
         </defs>
       </svg>
 
-      {/* Top Bar with Logo and Mobile Menu */}
-      <motion.div
-        initial={{ y: -50, opacity: 0 }}
+      {/* Horizontal Navbar with Gooey Effect */}
+      <motion.header
+        initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className="fixed top-0 left-0 right-0 z-40 h-16 bg-zinc-950/50 backdrop-blur-xl border-b border-zinc-800/30"
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-5xl"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
-          <a href="#" className="flex items-center gap-3 group">
-            <motion.div
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 via-fuchsia-500 to-pink-500 flex items-center justify-center text-white font-bold shadow-lg shadow-violet-500/30"
-            >
-              T
-            </motion.div>
-            <span className="font-semibold text-lg text-zinc-100 group-hover:text-white transition-colors">Tismodev</span>
-          </a>
+        <div className="relative bg-zinc-900/80 backdrop-blur-2xl border border-zinc-800/80 rounded-2xl shadow-2xl shadow-black/30">
+          {/* Gradient glow */}
+          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-violet-500/10 via-transparent to-fuchsia-500/10 pointer-events-none" />
 
-          <div className="flex items-center gap-3">
-            <LanguageSwitcher lang={lang} setLang={setLang} />
-            <motion.button
-              whileTap={{ scale: 0.9 }}
-              onClick={() => setMobileMenuOpen(true)}
-              className="md:hidden p-2.5 text-zinc-400 hover:text-white bg-zinc-800/50 rounded-xl border border-zinc-700/50"
-            >
-              <Menu size={20} />
-            </motion.button>
+          <div className="relative flex items-center justify-between h-14 px-4 sm:px-6">
+            {/* Logo */}
+            <a href="#" className="flex items-center gap-3 group z-10">
+              <motion.div
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 via-fuchsia-500 to-pink-500 flex items-center justify-center text-white font-bold shadow-lg shadow-violet-500/30"
+              >
+                T
+              </motion.div>
+              <span className="font-semibold text-lg text-zinc-100 group-hover:text-white transition-colors hidden sm:block">Tismodev</span>
+            </a>
+
+            {/* Desktop Navigation with Gooey Effect */}
+            <nav className="hidden md:flex items-center" style={{ filter: 'url(#goo)' }}>
+              <div className="flex items-center gap-1 bg-zinc-800/60 rounded-xl p-1.5">
+                {navItems.map((item, i) => (
+                  <motion.a
+                    key={item.key}
+                    href={`#${item.key}`}
+                    className="relative group px-4 py-2 rounded-lg text-sm font-medium text-zinc-400 hover:text-white transition-colors"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {/* Gooey background on hover */}
+                    <motion.div
+                      className="absolute inset-0 bg-violet-600 rounded-lg opacity-0 group-hover:opacity-100 -z-10"
+                      layoutId="gooeyBg"
+                      transition={{ type: "spring", bounce: 0.25, duration: 0.5 }}
+                    />
+                    <span className="relative z-10">{item.label}</span>
+
+                    {/* Particles */}
+                    {Array.from({ length: 4 }).map((_, j) => (
+                      <motion.div
+                        key={j}
+                        className="absolute w-1.5 h-1.5 rounded-full bg-violet-400 opacity-0 group-hover:opacity-100 pointer-events-none"
+                        style={{ left: '50%', top: '50%' }}
+                        animate={{
+                          x: [0, (Math.random() - 0.5) * 40],
+                          y: [0, (Math.random() - 0.5) * 40],
+                          opacity: [0, 0.8, 0],
+                          scale: [0, 1, 0],
+                        }}
+                        transition={{
+                          duration: 0.6,
+                          delay: j * 0.08,
+                          repeat: Infinity,
+                          repeatDelay: 0.8,
+                        }}
+                      />
+                    ))}
+                  </motion.a>
+                ))}
+              </div>
+
+              {/* Language Switcher */}
+              <div className="ml-4">
+                <LanguageSwitcher lang={lang} setLang={setLang} />
+              </div>
+
+              {/* CTA Button */}
+              <motion.a
+                href="#contact"
+                whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(139, 92, 246, 0.5)' }}
+                whileTap={{ scale: 0.95 }}
+                className="ml-3 px-5 py-2.5 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white text-sm font-semibold rounded-xl shadow-lg shadow-violet-500/25 transition-all"
+              >
+                {t.nav.cta}
+              </motion.a>
+            </nav>
+
+            {/* Mobile Menu Button */}
+            <div className="flex items-center gap-3 md:hidden">
+              <LanguageSwitcher lang={lang} setLang={setLang} />
+              <motion.button
+                whileTap={{ scale: 0.9 }}
+                onClick={() => setMobileMenuOpen(true)}
+                className="p-2.5 text-zinc-400 hover:text-white bg-zinc-800/50 rounded-xl border border-zinc-700/50"
+              >
+                <Menu size={20} />
+              </motion.button>
+            </div>
           </div>
         </div>
-      </motion.div>
-
-      {/* Gooey Nav - Right Side (Desktop Only) */}
-      <motion.nav
-        initial={{ x: 100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        className="fixed right-6 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col items-center"
-        style={{ filter: 'url(#goo)' }}
-      >
-        <div className="relative flex flex-col items-center gap-2 p-3 bg-zinc-900/90 backdrop-blur-xl rounded-3xl border border-zinc-800/50 shadow-2xl">
-          {navItems.map((item, i) => (
-            <motion.a
-              key={item.key}
-              href={`#${item.key}`}
-              className="relative group"
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <motion.div
-                className="w-12 h-12 rounded-2xl bg-zinc-800 flex items-center justify-center text-zinc-400 group-hover:bg-violet-600 group-hover:text-white transition-colors cursor-pointer"
-                whileHover={{
-                  boxShadow: '0 0 30px rgba(139, 92, 246, 0.5)',
-                }}
-              >
-                <span className="text-xs font-bold uppercase">{item.label.slice(0, 2)}</span>
-              </motion.div>
-
-              {/* Tooltip */}
-              <motion.div
-                initial={{ opacity: 0, x: -10 }}
-                whileHover={{ opacity: 1, x: 0 }}
-                className="absolute right-full mr-4 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-zinc-800 text-white text-sm font-medium rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 pointer-events-none"
-              >
-                {item.label}
-                <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1 w-2 h-2 bg-zinc-800 rotate-45" />
-              </motion.div>
-
-              {/* Particles on hover */}
-              {Array.from({ length: 6 }).map((_, j) => (
-                <motion.div
-                  key={j}
-                  className="absolute w-2 h-2 rounded-full bg-violet-500 opacity-0 group-hover:opacity-100 pointer-events-none"
-                  style={{
-                    left: '50%',
-                    top: '50%',
-                  }}
-                  animate={{
-                    x: [0, (Math.random() - 0.5) * 60],
-                    y: [0, (Math.random() - 0.5) * 60],
-                    opacity: [0, 1, 0],
-                    scale: [0, 1, 0],
-                  }}
-                  transition={{
-                    duration: 0.8,
-                    delay: j * 0.1,
-                    repeat: Infinity,
-                    repeatDelay: 1,
-                  }}
-                />
-              ))}
-            </motion.a>
-          ))}
-
-          {/* Divider */}
-          <div className="w-8 h-px bg-zinc-700 my-1" />
-
-          {/* CTA Button */}
-          <motion.a
-            href="#contact"
-            whileHover={{ scale: 1.2, rotate: 10 }}
-            whileTap={{ scale: 0.9 }}
-            className="w-12 h-12 rounded-2xl bg-gradient-to-br from-violet-600 to-fuchsia-600 flex items-center justify-center text-white shadow-lg shadow-violet-500/30 cursor-pointer"
-          >
-            <Send size={18} />
-          </motion.a>
-        </div>
-      </motion.nav>
+      </motion.header>
 
       {/* Mobile Menu */}
       <AnimatePresence>
