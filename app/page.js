@@ -98,6 +98,14 @@ function WhatsAppIcon({ size = 20 }) {
   );
 }
 
+function InstagramIcon({ size = 20 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+    </svg>
+  );
+}
+
 
 function ImageCarousel({ images, title }) {
   const [idx, setIdx] = useState(0);
@@ -908,14 +916,38 @@ export default function Home() {
                 ))}
               </div>
 
-              <div className="space-y-3">
-                <p className="text-sm text-zinc-500 mb-2">{t.contact.direct}</p>
+              <div className="space-y-4">
+                <p className="text-sm text-zinc-500">{t.contact.direct}</p>
                 <div className="flex flex-wrap gap-3">
-                  <a href="https://discord.gg/7vVVqdkVWg" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2.5 bg-zinc-900 border border-zinc-800 rounded-xl text-zinc-300 hover:bg-[#5865F2] hover:border-[#5865F2] hover:text-white transition-all">
-                    <DiscordIcon size={18} /> Discord
+                  <a
+                    href="https://discord.gg/7vVVqdkVWg"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative inline-flex items-center gap-2.5 px-5 py-3 bg-gradient-to-br from-zinc-800/80 to-zinc-900/80 backdrop-blur-sm border border-zinc-700/50 rounded-2xl text-zinc-300 overflow-hidden transition-all duration-300 hover:border-[#5865F2]/50 hover:shadow-lg hover:shadow-[#5865F2]/20 hover:scale-[1.02]"
+                  >
+                    <span className="absolute inset-0 bg-gradient-to-r from-[#5865F2] to-[#7289DA] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <DiscordIcon size={20} className="relative z-10 group-hover:text-white transition-colors" />
+                    <span className="relative z-10 font-medium group-hover:text-white transition-colors">Discord</span>
                   </a>
-                  <a href="https://wa.me/32489427017" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2.5 bg-zinc-900 border border-zinc-800 rounded-xl text-zinc-300 hover:bg-[#25D366] hover:border-[#25D366] hover:text-white transition-all">
-                    <WhatsAppIcon size={18} /> WhatsApp
+                  <a
+                    href="https://wa.me/32489427017"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative inline-flex items-center gap-2.5 px-5 py-3 bg-gradient-to-br from-zinc-800/80 to-zinc-900/80 backdrop-blur-sm border border-zinc-700/50 rounded-2xl text-zinc-300 overflow-hidden transition-all duration-300 hover:border-[#25D366]/50 hover:shadow-lg hover:shadow-[#25D366]/20 hover:scale-[1.02]"
+                  >
+                    <span className="absolute inset-0 bg-gradient-to-r from-[#25D366] to-[#128C7E] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <WhatsAppIcon size={20} className="relative z-10 group-hover:text-white transition-colors" />
+                    <span className="relative z-10 font-medium group-hover:text-white transition-colors">WhatsApp</span>
+                  </a>
+                  <a
+                    href="https://instagram.com/ayoubsyfd"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative inline-flex items-center gap-2.5 px-5 py-3 bg-gradient-to-br from-zinc-800/80 to-zinc-900/80 backdrop-blur-sm border border-zinc-700/50 rounded-2xl text-zinc-300 overflow-hidden transition-all duration-300 hover:border-[#E4405F]/50 hover:shadow-lg hover:shadow-[#E4405F]/20 hover:scale-[1.02]"
+                  >
+                    <span className="absolute inset-0 bg-gradient-to-r from-[#833AB4] via-[#E4405F] to-[#FCAF45] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <InstagramIcon size={20} className="relative z-10 group-hover:text-white transition-colors" />
+                    <span className="relative z-10 font-medium group-hover:text-white transition-colors">Instagram</span>
                   </a>
                 </div>
               </div>
@@ -965,12 +997,18 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="text-sm text-zinc-500">{t.footer}</div>
-            <div className="flex items-center gap-4">
-              <a href="https://github.com/tismo-dev" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-white transition-colors">
-                <Github size={20} />
+            <div className="flex items-center gap-3">
+              <a href="https://github.com/tismo-dev" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-xl bg-zinc-800/50 text-zinc-500 hover:bg-zinc-800 hover:text-white transition-all duration-300 hover:scale-110">
+                <Github size={18} />
               </a>
-              <a href="https://discord.gg/7vVVqdkVWg" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-white transition-colors">
-                <DiscordIcon size={20} />
+              <a href="https://discord.gg/7vVVqdkVWg" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-xl bg-zinc-800/50 text-zinc-500 hover:bg-[#5865F2] hover:text-white transition-all duration-300 hover:scale-110">
+                <DiscordIcon size={18} />
+              </a>
+              <a href="https://wa.me/32489427017" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-xl bg-zinc-800/50 text-zinc-500 hover:bg-[#25D366] hover:text-white transition-all duration-300 hover:scale-110">
+                <WhatsAppIcon size={18} />
+              </a>
+              <a href="https://instagram.com/ayoubsyfd" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-xl bg-zinc-800/50 text-zinc-500 hover:bg-gradient-to-r hover:from-[#833AB4] hover:via-[#E4405F] hover:to-[#FCAF45] hover:text-white transition-all duration-300 hover:scale-110">
+                <InstagramIcon size={18} />
               </a>
             </div>
           </div>
