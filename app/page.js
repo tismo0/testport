@@ -207,7 +207,7 @@ const projects = [
     images: ['/assets/asbl1.webp', '/assets/asbl2.webp', '/assets/asbl3.webp'],
     title: 'Non-Profit Website',
     desc: 'Complete website for a peace association with donations, newsletter, and event management.',
-    tech: ['Next.js', 'React', 'Vercel'],
+    tech: ['HTML', 'CSS', 'JavaScript', 'Vercel'],
     link: 'https://amisdelapaixverviers.vercel.app/'
   },
   {
@@ -223,7 +223,7 @@ const projects = [
     images: ['/assets/dc1.webp', '/assets/dc2.webp', '/assets/dc3.webp', '/assets/dc4.webp'],
     title: 'ZetaCVC Discord Bot',
     desc: 'Enterprise Discord bot with ticket system, role management, and moderation tools.',
-    tech: ['Discord.js', 'Node.js', 'MongoDB'],
+    tech: ['Discord.js', 'Node.js', 'Scheduler', 'CSS'],
     link: 'https://discord.gg/7vVVqdkVWg',
     github: 'https://github.com/tismo-dev'
   },
@@ -232,7 +232,7 @@ const projects = [
     images: ['/assets/C1.webp', '/assets/C2.webp', '/assets/C3.webp'],
     title: 'Salon Booking',
     desc: 'Elegant booking platform with appointment scheduling and responsive mobile design.',
-    tech: ['Next.js', 'Tailwind', 'Vercel'],
+    tech: ['Next.js', 'React', 'CSS', 'Vercel'],
     link: 'https://coiffeur-beb.vercel.app/'
   }
 ];
