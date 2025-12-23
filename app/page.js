@@ -105,16 +105,16 @@ function WhatsAppIcon({ size = 20 }) {
 }
 
 // ============================================================================
-// IMAGE CAROUSEL COMPONENT
+// IMAGE CAROUSEL COMPONENT - Browser Mockup Style
 // ============================================================================
 function ImageCarousel({ images, title }) {
   const [idx, setIdx] = useState(0);
   const [dir, setDir] = useState(0);
 
   const variants = {
-    enter: (d) => ({ x: d > 0 ? 200 : -200, opacity: 0 }),
-    center: { x: 0, opacity: 1 },
-    exit: (d) => ({ x: d < 0 ? 200 : -200, opacity: 0 })
+    enter: (d) => ({ x: d > 0 ? 100 : -100, opacity: 0, scale: 0.95 }),
+    center: { x: 0, opacity: 1, scale: 1 },
+    exit: (d) => ({ x: d < 0 ? 100 : -100, opacity: 0, scale: 0.95 })
   };
 
   const paginate = (d) => {
@@ -128,45 +128,82 @@ function ImageCarousel({ images, title }) {
   };
 
   return (
-    <div className="relative aspect-video overflow-hidden rounded-xl bg-zinc-900">
-      <AnimatePresence initial={false} custom={dir} mode="wait">
-        <motion.div
-          key={idx}
-          custom={dir}
-          variants={variants}
-          initial="enter"
-          animate="center"
-          exit="exit"
-          transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute inset-0"
-        >
-          <Image
-            src={images[idx]}
-            alt={`${title} - ${idx + 1}`}
-            fill
-            className="object-cover"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
-            quality={90}
-            priority={idx === 0}
-          />
-        </motion.div>
-      </AnimatePresence>
+    <div className="relative">
+      {/* Browser Mockup Frame */}
+      <div className="rounded-xl overflow-hidden border border-zinc-700/50 bg-zinc-800 shadow-2xl">
+        {/* Browser Top Bar */}
+        <div className="flex items-center gap-2 px-3 py-2 bg-zinc-800 border-b border-zinc-700/50">
+          <div className="flex gap-1.5">
+            <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
+            <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
+            <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
+          </div>
+          <div className="flex-1 mx-2">
+            <div className="h-5 rounded-md bg-zinc-700/50 flex items-center justify-center">
+              <span className="text-[10px] text-zinc-500 truncate px-2">{title}</span>
+            </div>
+          </div>
+        </div>
 
-      {images.length > 1 && (
-        <>
-          <button onClick={() => paginate(-1)} className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-black/60 backdrop-blur flex items-center justify-center text-white/80 hover:bg-black/80 hover:text-white transition-all cursor-pointer">
-            <ChevronLeft size={16} />
-          </button>
-          <button onClick={() => paginate(1)} className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-black/60 backdrop-blur flex items-center justify-center text-white/80 hover:bg-black/80 hover:text-white transition-all cursor-pointer">
-            <ChevronRight size={16} />
-          </button>
-          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 flex gap-1.5">
+        {/* Image Container */}
+        <div className="relative aspect-[16/10] bg-gradient-to-br from-zinc-900 via-zinc-900 to-zinc-800 overflow-hidden">
+          <AnimatePresence initial={false} custom={dir} mode="wait">
+            <motion.div
+              key={idx}
+              custom={dir}
+              variants={variants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="absolute inset-2 flex items-center justify-center"
+            >
+              <div className="relative w-full h-full rounded-lg overflow-hidden shadow-lg ring-1 ring-white/5">
+                <Image
+                  src={images[idx]}
+                  alt={`${title} - ${idx + 1}`}
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
+                  quality={95}
+                  priority={idx === 0}
+                />
+              </div>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Navigation Arrows */}
+          {images.length > 1 && (
+            <>
+              <button
+                onClick={() => paginate(-1)}
+                className="absolute left-1 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-zinc-900/80 backdrop-blur border border-zinc-700/50 flex items-center justify-center text-zinc-400 hover:bg-zinc-800 hover:text-white hover:border-zinc-600 transition-all cursor-pointer"
+              >
+                <ChevronLeft size={14} />
+              </button>
+              <button
+                onClick={() => paginate(1)}
+                className="absolute right-1 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-zinc-900/80 backdrop-blur border border-zinc-700/50 flex items-center justify-center text-zinc-400 hover:bg-zinc-800 hover:text-white hover:border-zinc-600 transition-all cursor-pointer"
+              >
+                <ChevronRight size={14} />
+              </button>
+            </>
+          )}
+        </div>
+
+        {/* Dots Navigation */}
+        {images.length > 1 && (
+          <div className="flex justify-center gap-1.5 py-2 bg-zinc-800">
             {images.map((_, i) => (
-              <button key={i} onClick={() => { setDir(i > idx ? 1 : -1); setIdx(i); }} className={`w-1.5 h-1.5 rounded-full transition-all cursor-pointer ${i === idx ? 'bg-white w-3' : 'bg-white/40'}`} />
+              <button
+                key={i}
+                onClick={() => { setDir(i > idx ? 1 : -1); setIdx(i); }}
+                className={`h-1.5 rounded-full transition-all cursor-pointer ${i === idx ? 'bg-violet-500 w-4' : 'bg-zinc-600 w-1.5 hover:bg-zinc-500'}`}
+              />
             ))}
           </div>
-        </>
-      )}
+        )}
+      </div>
     </div>
   );
 }
